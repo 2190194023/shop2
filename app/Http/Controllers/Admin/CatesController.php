@@ -12,17 +12,17 @@ class CatesController extends Controller
 	//设置个静态的方法 给 子分类加--
 	public static function getCateData()
 	{
-	//查询所有数据   并分级
-     $cates = Cates::select('*',DB::raw("concat(path,',',id) as paths"))->orderBy('paths','asc')->paginate(12);
+    	//查询所有数据   并分级
+        $cates = Cates::select('*',DB::raw("concat(path,',',id) as paths"))->orderBy('paths','asc')->paginate(20);
 
-     foreach ($cates as $key => $value){
-     	$n = substr_count($value->path,',');
+        foreach ($cates as $key => $value){
+            $n = substr_count($value->path,',');
 
-     	$cates[$key]->cname = str_repeat('|----',$n).$value->cname;
-     }
+         	$cates[$key]->cname = str_repeat('|----',$n).$value->cname;
+        }
 
-     return $cates;
-	}
+        return $cates;
+    }
 
     /**
      * Display a listing of the resource.
@@ -45,16 +45,14 @@ class CatesController extends Controller
      */
     public function create(Request $request)
     {
-     //查询所有数据   并分级
-     $cates = Cates::select('*',DB::raw("concat(path,',',id) as paths"))->orderBy('paths','asc')->get();
+        //查询所有数据   并分级
+        $cates = Cates::select('*',DB::raw("concat(path,',',id) as paths"))->orderBy('paths','asc')->get();
 
-     foreach ($cates as $key => $value){
-     	$n = substr_count($value->path,',');
+        foreach ($cates as $key => $value){
+            $n = substr_count($value->path,',');
 
-     	$cates[$key]->cname = str_repeat('|----',$n).$value->cname;
-     }
-
-    
+            $cates[$key]->cname = str_repeat('|----',$n).$value->cname;
+        }
 
     	$id = $request->input('id',0);
         //显示 添加页面
@@ -74,19 +72,10 @@ class CatesController extends Controller
     	//验证 必填
     	$this->validate($request,[
     		'cname' => 'required',
-    		
-    
     	],[
-
     		'cname.required' => '请填写分类名称',
-    
     	]);
-        $cname = $request->input('cname','');
 
-        $cn = Cates::where('cname',$cname)->first();
-        if($cn){
-            return back()->with('error','此类别名称已存在');
-        }
         //添加
         //获取 pid
         $pid = $request->input('pid',0);
@@ -95,21 +84,20 @@ class CatesController extends Controller
         if($pid == 0){
         	$path = 0;
         }else{
-        //获取父级数据
-        $parent_data = Cates::find($pid);
-        $path = $parent_data->path.','.$parent_data->id;
+            //获取父级数据
+            $parent_data = Cates::find($pid);
+            $path = $parent_data->path.','.$parent_data->id;
         }
 
         //将数据压入到数据库
-        
         $cate = new Cates;
         $cate->cname = $request->input('cname','');
         $cate->pid = $pid;
         $cate->path = $path;
-        $res1 = $cate->save();
+        $res = $cate->save();
 
         //判断
-        if($res1){
+        if($res){
         	return redirect('admin/cates')->with('success','添加成功');
         }else{
         	return back()->with('error','添加失败');

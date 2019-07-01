@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAdmin;
 use App\Models\Adminuser;
+use App\Models\Role;
 use Hash;
+use DB;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -36,8 +38,11 @@ class AdminuserController extends Controller
      */
     public function create()
     {
+        // 获取所有角色
+        $roles_data = DB::table('roles')->get();
+
         // 显示用户添加页面
-        return view('admin.adminuser.create');
+        return view('admin.adminuser.create',['roles_data'=>$roles_data]);
     }
 
     /**
@@ -47,7 +52,15 @@ class AdminuserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreAdmin $request)
-    {
+    { 
+        $uname = $request->input('uname','');
+        $password = $request->input('password','');
+        $repass = $request->input('repass','');
+        $phone = $request->input('phone','');
+        $email = $request->input('email','');
+        $rid = $request->input('rid','');
+
+
         // 上传头像
         if($request->hasFile('profile')){
             $file_path = $request->file('profile')->store(date('Ymd'));
@@ -55,22 +68,18 @@ class AdminuserController extends Controller
             $file_path = '';
         }
 
-        $data = $request->all();
-        // dump($data);
+        $temp['uname'] = $uname;
+        $temp['password'] = Hash::make($password);
+        $temp['phone'] = $phone;
+        $temp['email'] = $email;
+        $temp['profile'] = $file_path;
+        $temp['created_at'] = date('Y-m-d H:i:s',time());
 
-        // 接收数据
-        $adminuser = new Adminuser;
-        $adminuser->uname = $data['uname'];
-        $adminuser->password = Hash::make($data['password']);
-        $adminuser->phone = $data['phone'];
-        $adminuser->email = $data['email'];
-        $adminuser->profile = $file_path;
+        $uid = DB::table('admin_users')->insertGetId($temp);
 
-        // 执行添加
-        $res = $adminuser->save();
+        $res = DB::table('adminusers_roles')->insert(['uid'=>$uid,'rid'=>$rid]);
 
-        if($res){
-
+        if($uid && $res){
             return redirect('admin/adminuser')->with('success','添加成功');
         }else{
 
@@ -100,8 +109,12 @@ class AdminuserController extends Controller
         // 获取数据库信息
         $adminuser = Adminuser::find($id);
 
+        // 获取所有角色
+        $roles_data = DB::table('roles')->get();
+
+        $adminrol = DB::table('adminusers_roles')->where('uid',$id)->first();
         // 加载修改页面
-        return view('admin.adminuser.edit',['adminuser'=>$adminuser]);
+        return view('admin.adminuser.edit',['adminuser'=>$adminuser,'roles_data'=>$roles_data,'adminrol'=>$adminrol]);
     }
 
     /**
@@ -113,25 +126,17 @@ class AdminuserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 获取头像
-        if ($request->hasFile('profile')) {
 
-            // 删除以前旧的图片
-            Storage::delete($request->input('old_profile'));
-
-            $file_path = $request->file('profile')->store(date('Ymd'));
-        }else{
-            $file_path = $request->input('old_profile');
-        }
+        $rid = $request->input('rid','');
 
         $adminuser = Adminuser::find($id);
         $adminuser->phone = $request->input('phone','');
         $adminuser->email = $request->input('email','');
-        $adminuser->profile = $file_path;
 
-        $res = $adminuser->save();
+        $uid = $adminuser->save();
+        $res = DB::table('adminusers_roles')->update(['uid'=>$uid,'rid'=>$rid]);
 
-        if($res){
+        if($uid && $res){
             return redirect('admin/adminuser')->with('success','修改成功');
         }else{
 
@@ -152,8 +157,6 @@ class AdminuserController extends Controller
         // 删除头像
         Storage::delete('file.jpg');
 
-
-        
         if($res){
             return redirect('admin/adminuser')->with('success','删除成功');
         }else{

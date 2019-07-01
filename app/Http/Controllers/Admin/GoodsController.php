@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cates;
 use App\Models\Goods;
-use App\Models\Huodong;
 use DB;
-use Illuminate\Support\Facades\Storage;
 
 class GoodsController extends Controller
 {
@@ -53,11 +51,11 @@ class GoodsController extends Controller
     {
 	    
 
-    	$huodong = Huodong::get();
+    
 
     	$id = $request->input('id',0);
         //显示 添加页面
-        return view('admin.goods.create',['id'=>$id,'cates'=>self::getCateData(),'huodong'=>$huodong]);
+        return view('admin.goods.create',['id'=>$id,'cates'=>self::getCateData()]);
     }
 
     /**
@@ -67,17 +65,9 @@ class GoodsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        
+    {
 
     	//验证 必填
-        
-        $tid = $request->input('tid');
-
-        if($tid == 0){
-            return back()->with('error','请选择商品类别');
-        }
-
     	$this->validate($request,[
     		'gname' => 'required',
     		'gcompany' => 'required',
@@ -88,7 +78,7 @@ class GoodsController extends Controller
     		'xinghao' => 'required',
     
     	],[
-            'tid.required' => '请填写商品类别',
+
     		'gname.required' => '请填写商品名称',
     		'gcompany.required' => '请填写生产厂家',
     		'gdescr.required' => '请填写简介',
@@ -98,12 +88,7 @@ class GoodsController extends Controller
     		'xinghao.required' => '请填写型号',
     
     	]);
-        // 检测文件上传
-        if($request->hasFile('url')){
-            $url = $request->file('url')->store(date('Ymd'));
-        }else{
-            return back()->with('error','请选择图片');
-        }
+
 
 
     	//获取添加事件
@@ -111,7 +96,6 @@ class GoodsController extends Controller
         //将数据压入数据库
         $goods = new Goods;
         $goods->tid = $request->input('tid','');
-        $goods->pid = $request->input('pid','');
         $goods->gname = $request->input('gname',''); 
         $goods->gcompany = $request->input('gcompany','');
         $goods->gdescr = $request->input('gdescr','');
@@ -121,8 +105,8 @@ class GoodsController extends Controller
         $goods->gtock = $request->input('gtock',0);
         $goods->gaddtime = $gaddtime;
         $goods->xinghao = $request->input('xinghao','');
-        $goods->url = $url;
         $res1 = $goods->save();
+
         //判断
         if($res1){
         	return redirect('admin/goods')->with('success','添加成功');
@@ -151,12 +135,11 @@ class GoodsController extends Controller
     public function edit(request $request,$id)
     {
     	$cha = Goods::where('id',$id)->first();
-    	$huodong = Huodong::get();
     	
 
     	$id = $request->input('id',0);
         //跳转修改
-       	return view('admin.goods.edit',['cha'=>$cha,'id'=>$id,'cates'=>self::getCateData(),'huodong'=>$huodong]);
+       	return view('admin.goods.edit',['cha'=>$cha,'id'=>$id,'cates'=>self::getCateData()]);
     }
 
     /**
@@ -168,27 +151,13 @@ class GoodsController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $tid = $request->input('tid');
-
-        if($tid == 0){
-            return back()->with('error','请选择商品类别');
-        }
         //执行修改语句
          //将数据压入数据库
         $goods = new Goods;
-        // 检测文件上传
-        if($request->hasFile('url')){
-            // 删除以前 旧图片
-            Storage::delete($request->input('url'));
-            $url = $request->file('url')->store(date('Ymd'));
-        }else{
-            return back()->with('error','请选择图片');
-        }
 
        $goods = Goods::find($id);
 
         $goods->tid = $request->input('tid','');
-        $goods->pid = $request->input('pid','');
         $goods->gname = $request->input('gname',''); 
         $goods->gcompany = $request->input('gcompany','');
         $goods->gdescr = $request->input('gdescr','');
@@ -196,7 +165,7 @@ class GoodsController extends Controller
         $goods->size = $request->input('size','');
         $goods->gstatus = $request->input('gstatus','');
         $goods->gtock = $request->input('gtock',0);
-        $goods->url = $url;
+
         $goods->xinghao = $request->input('xinghao','');
         $res1 =$goods->save();
 

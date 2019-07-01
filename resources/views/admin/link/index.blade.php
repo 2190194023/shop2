@@ -8,14 +8,14 @@
     </div>
     <!-- 搜索 开始 -->
         <div class="form-body" style="height:50px;padding-top:30px" data-example-id="simple-form-inline">
-          <form class="form-inline" action="/admin/link">
-            <div class="form-group">
-              <input type="text" class="form-control" name="search" value="{{ $search }}" placeholder="链接名称">
-            <button type="submit" class="btn btn-success">搜索</button>
-          </div>
-        </form>
+            <form class="form-inline" action="/admin/link">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="search" value="{{ $search }}" placeholder="链接名称">
+                    <button type="submit" class="btn btn-success">搜索</button>
+                </div>
+            </form>
         </div>
-        <!-- 搜索 结束 <--></-->
+        <!-- 搜索 结束 <-->
     <div class="mws-panel-body no-padding">
         <table class="mws-table">
             <thead>

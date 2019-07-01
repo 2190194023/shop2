@@ -40,7 +40,7 @@ class NodesController extends Controller
     public function store(Request $request)
     {
         $cname = $request->input('cname');
-        $controller = $cname.'controller';
+        $controller = $cname.'Controller';
 
         $aname = $request->input('aname');
         $desc = $request->input('desc');
@@ -73,7 +73,9 @@ class NodesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $nodes = DB::table('nodes')->where('id',$id)->first();
+
+        return view('admin.nodes.edit',['nodes'=>$nodes]);
     }
 
     /**
@@ -85,7 +87,19 @@ class NodesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data['desc'] = $request->input('desc','');
+        $data['cname'] = $request->input('cname','');
+        $data['aname'] = $request->input('aname','');
+
+        $res = DB::table('nodes')->where('id',$id)->update($data);
+
+        // 判断逻辑
+        if($res){
+            return redirect('admin/nodes')->with('success','修改成功');
+        }else{
+            return back()->with('error','修改失败');
+        }
+
     }
 
     /**

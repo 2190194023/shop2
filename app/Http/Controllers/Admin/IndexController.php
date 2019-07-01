@@ -12,10 +12,27 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // 加载视图
-        return view('admin.index');
+        //ip
+        $arr['ip']=($request->ip());
+        //操作系统
+        $arr['os']=PHP_OS;
+        //运行环境
+        $arr['environment']=$_SERVER["SERVER_SOFTWARE"];
+        //php版本
+        $arr['versions']=PHP_VERSION;
+        //运行模式
+        $arr['operation']=php_sapi_name();
+        //表单上传最大值
+        $arr['formmax']=ini_get('post_max_size');
+        //服务器允许最
+        $arr['servermax']=ini_get('upload_max_filesize');
+        //laravel版本
+        $laravel = app();
+        $arr['laravelver']=$laravel::VERSION;
+        
+        return view('admin.index',['arr'=>$arr]);
     }
 
     /**

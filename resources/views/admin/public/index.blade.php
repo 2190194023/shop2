@@ -36,9 +36,6 @@
 
 <title>后台管理</title>
 
-@section('css')
-
-@show
 </head>
 
 <body>
@@ -73,7 +70,7 @@
                     </div>
                     <ul>
                         <li><a href="/admin/profile">修改头像</a></li>
-                        <li><a href="#">修改密码</a></li>
+                        <li><a href="/admin/pass">修改密码</a></li>
                         <li><a href="/admin/outlogin">退出</a></li>
                     </ul>
                 </div>
@@ -145,77 +142,63 @@
                         </ul>
                     </li>
                 </ul>
+                
                 <ul>
                     <li class="active">
-                        <a href="#"><i class="icon-list"></i> 订单管理</a>
+                        <a href="JavaScript:;"><i class="icon-google-plus"></i>分类管理</a>
                         <ul>
-                            <li><a href="/admin/order">订单列表</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="active">
-                        <a href="JavaScript:;"><i class="icon-list"></i> 分类管理</a>
-                        <ul>
-                            <li><a href="/admin/cates">分类列表</a></li>
-                            <li><a href="/admin/cates/create">分类添加</a></li>
+                            <li><a href="/admin/cates">浏览分类</a></li>
+                            <li><a href="/admin/cates/create">添加分类</a></li>
 
                         </ul>
                     </li>
                 </ul>
-                <ul>
-                    <li class="active">
-                        <a href="JavaScript:;"><i class="icon-list"></i> 友情链接管理</a>
-                        <ul>
-                            <li><a href="/admin/link">友情链接列表</a></li>
-                            <li><a href="/admin/link/create">友情链接添加</a></li>
-
-                        </ul>
-                    </li>
-                </ul>
+                
                 <ul>
                     <li class="active">
 
-                        <a href="JavaScript:;"><i class="icon-list"></i> 轮播图管理</a>
+                        <a href="JavaScript:;"><i class="icon-arrow-right-2"></i>轮播图管理</a>
                         <ul>
-                            <li><a href="/admin/slideshow">轮播图列表</a></li>
-                            <li><a href="/admin/slideshow/create">轮播图添加</a></li>
-                        </ul>
-                        </li>
-                </ul>
-                <ul>
-                    <li class="active">
-                        <a href="JavaScript:;"><i class="icon-list"></i> 商品管理</a>
-                        <ul>
-                            <li><a href="/admin/goods">商品列表</a></li>
-                            <li><a href="/admin/goods/create">商品添加</a></li>
+                            <li><a href="/admin/slideshow">浏览轮播图</a></li>
+                            <li><a href="/admin/slideshow/create">添加轮播图</a></li>
                         </ul>
                     </li>
                 </ul>
                 <ul>
                     <li class="active">
-                        <a href="JavaScript:;"><i class="icon-list"></i> 商品图片管理</a>
+                        <a href="JavaScript:;"><i class="icon-briefcase"></i>商品管理</a>
                         <ul>
-                            <li><a href="/admin/goodsimg">商品图片列表</a></li>
-                            <li><a href="/admin/goodsimg/create">图片添加</a></li>
+                            <li><a href="/admin/goods">浏览商品</a></li>
+                            <li><a href="/admin/goods/create">添加商品</a></li>
                         </ul>
                     </li>
                 </ul>
                 <ul>
                     <li class="active">
-                        <a href="JavaScript:;"><i class="icon-list"></i>秒杀管理</a>
+                        <a href="JavaScript:;"><i class="icon-picture"></i>商品图片管理</a>
                         <ul>
-                            <li><a href="/admin/miao">秒杀商品列表</a></li>
-                            <li><a href="/admin/miao/create">添加秒杀商品</a></li>
+                            <li><a href="/admin/goodsimg">浏览商品图片</a></li>
+                            <li><a href="/admin/goodsimg/create">添加商品图片</a></li>
                         </ul>
                     </li>
                 </ul>
+                
                 <ul>
                     <li class="active">
-                        <a href="JavaScript:;"><i class="icon-list"></i>活动管理</a>
+                        <a href="#"><i class="icon-list"></i>订单管理</a>
                         <ul>
-                            <li><a href="/admin/dong">活动列表</a></li>
-                            <li><a href="/admin/dong/create">添加活动</a></li>
+                            <li><a href="/admin/order">浏览订单</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul>
+                    <li class="active">
+                        <a href="JavaScript:;"><i class="icon-link"></i>友情链接管理</a>
+                        <ul>
+                            <li><a href="/admin/link">浏览友情链接</a></li>
+                            <li><a href="/admin/link/create">添加友情链接</a></li>
+
                         </ul>
                     </li>
                 </ul>
