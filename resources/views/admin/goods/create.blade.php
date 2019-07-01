@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 				
 
 			@if (count($errors) > 0)

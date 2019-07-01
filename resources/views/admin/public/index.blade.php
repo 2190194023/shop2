@@ -36,9 +36,7 @@
 
 <title>后台管理</title>
 
-@section('css')
 
-@show
 </head>
 
 <body>
@@ -73,7 +71,7 @@
                     </div>
                     <ul>
                         <li><a href="/admin/profile">修改头像</a></li>
-                        <li><a href="#">修改密码</a></li>
+                        <li><a href="/admin/pass">修改密码</a></li>
                         <li><a href="/admin/outlogin">退出</a></li>
                     </ul>
                 </div>
@@ -153,12 +151,13 @@
                         </ul>
                     </li>
                 </ul>
+                
                 <ul>
                     <li class="active">
-                        <a href="JavaScript:;"><i class="icon-list"></i> 分类管理</a>
+                        <a href="JavaScript:;"><i class="icon-google-plus"></i>分类管理</a>
                         <ul>
-                            <li><a href="/admin/cates">分类列表</a></li>
-                            <li><a href="/admin/cates/create">分类添加</a></li>
+                            <li><a href="/admin/cates">浏览分类</a></li>
+                            <li><a href="/admin/cates/create">添加分类</a></li>
 
                         </ul>
                     </li>

@@ -140,5 +140,4 @@
 			            clear: both;
 			        }
 			    </style>
-			
 @endsection

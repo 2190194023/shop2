@@ -30,6 +30,7 @@ class StoreAdmin extends FormRequest
             'phone' => 'required|regex:/^1{1}[3-8]{1}[\d]{9}$/',
             'email' => 'required|email:',
             'profile' => 'required',
+
         ];
     }
 
@@ -54,7 +55,6 @@ class StoreAdmin extends FormRequest
 
             'email.required'=>'邮箱必填',
             'email.email'=>'邮箱格式不正确',
-
             'profile.required'=>'头像必填',
         ];
     }

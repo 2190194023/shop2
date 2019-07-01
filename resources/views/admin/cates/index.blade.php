@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div class="mws-panel grid_8">
                 	<div class="mws-panel-header">
                     	<span><i class="icon-table"></i>分类显示</span>
@@ -32,8 +31,8 @@
                                     顶级分类
                                     @else
                                     @php
-									$v = Cates::where('id',$v->pid)->first();
-									echo $v->cname;
+									$x = Cates::where('id',$v->pid)->first();
+									echo $x->cname;
 									@endphp
 									@endif
                                     </td>

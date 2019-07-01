@@ -4,7 +4,7 @@
 <header id="pc-header">
 	<div class="pc-header-nav">
 		<div class="pc-header-con">
-			<div class="fl pc-header-link" >您好！，欢迎来云购物 <a href="login.html" target="_blank">请登录</a> <a href="register.html" target="_blank"> 免费注册</a></div>
+			<div class="fl pc-header-link" >您好！，欢迎来云购物 <a href="lamp215.cn" target="_blank">请登录</a> <a href="register.html" target="_blank"> 免费注册</a></div>
 			<div class="fr pc-header-list top-nav">
 				<ul>
 					<li>
@@ -41,7 +41,7 @@
 	<div class="pc-header-logo clearfix">
 		<div class="pc-fl-logo fl">
 			<h1>
-				<a href="index.html"></a>
+				<a href="/"></a>
 			</h1>
 		</div>
 		<div class="head-form fl">
@@ -72,7 +72,7 @@
 		<!-- 导航   start  -->
 		<div class="yNavIndex">
 			<ul class="yMenuIndex" style="margin-left:0">
-				<li style="background:#d1201e"><a href="" target="_blank">云购首页</a></li>
+				<li style="background:#d1201e"><a href="/" target="_blank">云购首页</a></li>
 				@foreach($cate_data as $k=>$v)
 				<li><a href="/home/list/{{ $v->id }}" target="_blank">{{ $v->cname }}</a></li>
 				@endforeach

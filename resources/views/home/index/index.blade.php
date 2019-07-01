@@ -41,7 +41,7 @@
 	<div class="pc-header-logo clearfix">
 		<div class="pc-fl-logo fl">
 			<h1>
-				<a href="index.html"></a>
+				<a href="/"></a>
 			</h1>
 		</div>
 		<div class="head-form fl">
