@@ -18,10 +18,10 @@
             <button type="submit" class="btn btn-success">搜索</button>
           </div>
         </form>
-        </div>
         <!-- 搜索 结束 <--></-->
 
 <div class="mws-panel grid_8">
+<<<<<<< HEAD
                 	<div class="mws-panel-header">
                     	<span><i class="icon-table"></i>分类显示</span>
                     </div>

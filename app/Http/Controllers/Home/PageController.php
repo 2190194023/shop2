@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cates;
 use App\Models\Goods;
 use App\Models\Goodsimg;
+use DB;
 
 class PageController extends Controller
 {
@@ -59,8 +60,14 @@ class PageController extends Controller
         // 猜你喜欢  本类别下 最新商品
         $goods_data = goods::where('tid',$goods->tid)->get();
 
-        // 本店分类
-        $cates_data = Cates::where('pid',0)->get();
+        // 所有分类
+        $cates_data = Cates::select('*',DB::raw("concat(path,',',id) as paths"))->orderBy('paths','asc')->paginate(12);
+
+         foreach ($cates_data as $key => $value){
+            $n = substr_count($value->path,',');
+
+            $cates_data[$key]->cname = str_repeat('|----',$n).$value->cname;
+         }
 
         // 商品详情首页 视图
         return view('home.page.index',['cate_data'=>$cate_data,'cates_data'=>$cates_data,'goods'=>$goods,'gimg'=>$gimg,'goods_data'=>$goods_data]);

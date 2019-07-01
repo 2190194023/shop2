@@ -60,7 +60,27 @@
 					    <label class="mws-form-label" >
 					       头像
 					    </label>
-					</div>           
+
+					</div>    
+
+					<div class="mws-form-row">
+					    <label class="mws-form-label" >
+					       角色名称
+					    </label>			    
+					    <div class="mws-form-item clearfix">
+        					<ul class="mws-form-list inline">
+        						@foreach($roles_data as $k=>$v)
+	        						@if($adminrol->rid == $v->id)
+	        						<li><input type="radio" name="rid" value="{{ $v->id }}" checked> </li><label>{{ $v->rname }}</label>
+	        						@else
+	        						<li><input type="radio" name="rid" value="{{ $v->id }}" > </li><label>{{ $v->rname }}</label>
+	        						@endif
+	        					@endforeach
+        					</ul>
+        				</div>   
+
+					</div>         
+
 	            </div>
 	            <div class="mws-button-row">
 	                <input type="submit" value="提交" class="btn btn-info">               

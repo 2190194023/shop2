@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cates;
 use App\Models\Goods;
+use DB;
+
 class ListController extends Controller
 {
     /**
@@ -19,7 +21,13 @@ class ListController extends Controller
         $cate_data = Cates::where('pid',0)->paginate(7);
 
         // 获取 所有栏目名称 50条 一页
-        $cate_res = Cates::paginate(50);
+        $cate_res = Cates::select('*',DB::raw("concat(path,',',id) as paths"))->orderBy('paths','asc')->paginate(50);
+
+         foreach ($cate_res as $key => $value){
+            $n = substr_count($value->path,',');
+
+            $cate_res[$key]->cname = str_repeat('|----',$n).$value->cname;
+         }
         // 视图
         return view('home.list.allcates',['cate_data'=>$cate_data,'cate_res'=>$cate_res]);
     }

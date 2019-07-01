@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use DB;
 
 class RolesController extends Controller
@@ -11,8 +12,14 @@ class RolesController extends Controller
     public static function conall()
     {
         return [
-            'Userscontroller'=>'用户管理',
-            'Adminuserscontroller'=>'管理员管理',
+            'IndexController'=>'首页',
+            'IndexController'=>'后台首页',
+            'AdminuserController'=>'管理员管理',
+            'UsersController'=>'用户管理',
+            'RolesController'=>'角色管理',
+            'NodesController'=>'权限管理',
+            'NodesController'=>'权限管理',
+            'CatesController'=>'分类管理',
         ];
     }
     /**
@@ -36,14 +43,15 @@ class RolesController extends Controller
      */
     public function create()
     {
+
+        // 获取所有数据
         $nodes_data = DB::table('nodes')->get();
 
+        $list = [];
         foreach ($nodes_data as $k => $v) {
             $temp['id'] = $v->id;
-            $temp['cname'] = $v->cname;
             $temp['aname'] = $v->aname;
             $temp['desc'] = $v->desc;
-
             $list[$v->cname][] = $temp;
         }
 
@@ -98,7 +106,26 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $roles = Role::find($id);
+
+        $nodes = DB::table('nodes')->get();
+
+        $roles_nodes = DB::table('roles_nodes')->get();
+        $roles_dd = DB::table('roles_nodes')->where('rid',$id)->get();
+
+        $temp = [];
+        foreach($roles_dd as $k=>$v){
+            $temp[] = $roles_dd[$k]->nid;
+        }
+        $list = [];
+        foreach ($nodes as $k => $v) {
+            $tamp['id'] = $v->id;
+            $tamp['aname'] = $v->aname;
+            $tamp['desc'] = $v->desc;
+            $list[$v->cname][] = $tamp;
+        }
+
+        return view('admin.roles.edit',['roles'=>$roles,'list'=>$list,'conall'=>self::conall(),'temp'=>$temp]);
     }
 
     /**
@@ -110,7 +137,24 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $rname = $request->input('rname','');
+        $nids = $request->input('nids','');
+
+        // 删除旧数据
+        $data = DB::table('roles_nodes')->where('rid',$id)->delete();
+
+        foreach($nids as $k=>$v){
+            // 添加新数据
+            $res = DB::table('roles_nodes')->insert(['rid'=>$id,'nid'=>$v]);
+        }
+
+        // 判断逻辑
+        if($res){
+            return redirect('admin/roles')->with('success','修改成功');
+        }else{
+            return back()->with('error','修改失败');
+        }
     }
 
     /**
@@ -121,6 +165,13 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res = Role::destroy($id);
+
+        if($res){
+            return redirect('admin/roles')->with('success','删除成功');
+        }else{
+
+            return back()->with('error','删除失败');
+        }
     }
 }

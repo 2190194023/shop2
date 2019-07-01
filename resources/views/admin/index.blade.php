@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <script language=javascript> function tick() { var hours, minutes, seconds, ap; var intHours, intMinutes, intSeconds; var today; today = new Date(); intHours = today.getHours(); intMinutes = today.getMinutes(); intSeconds = today.getSeconds(); if (intHours == 0) { hours = "12:"; ap = "Midnight"; } else if (intHours < 12) { hours = intHours+":"; ap = "A.M."; } else if (intHours == 12) { hours = "12:"; ap = "Noon"; } else { hours = intHours + ":"; ap = "P.M."; } if (intMinutes < 10) { minutes = "0"+intMinutes+":"; } else { minutes = intMinutes+":"; } if (intSeconds < 10) { seconds = "0"+intSeconds+" "; } else { seconds = intSeconds+" "; } timeString = hours+minutes+seconds+ap; Clock.innerHTML = timeString; window.setTimeout("tick();", 1000); } window.onload = tick; </script>
     <div class="mws-panel grid_8">
                     <div class="mws-panel-header">
@@ -55,6 +56,7 @@
                         </table>
                     </div>
     </div>
+
     <CENTER>
     <div>Copyright Your Website 2012. All Rights Reserved.</div>
     <div>开发者ODX.69c.shop</div>

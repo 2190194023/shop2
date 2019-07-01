@@ -40,8 +40,11 @@
 		                    <td style="text-align: center;">
 		                    	<a href="" class="btn btn-warning">角色</a>
 								<a href="" class="btn btn-info">修改</a>
-								<form action="" method="post" style="display: inline-block;">
-									
+								<a href="/admin/roles/{{ $v->id }}/edit" class="btn btn-info">权限修改</a>
+								<form action="/admin/roles/{{ $v->id }}" method="post" style="display: inline-block;">
+									{{ csrf_field() }}
+									{{ method_field('DELETE') }}
+
 									<input type="submit" value="删除" class="btn btn-success">
 								</form>
 		                    </td>

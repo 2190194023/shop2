@@ -54,8 +54,6 @@ class CatesController extends Controller
      	$cates[$key]->cname = str_repeat('|----',$n).$value->cname;
      }
 
-    
-
     	$id = $request->input('id',0);
         //显示 添加页面
         return view('admin.cates.create',['id'=>$id,'cates'=>$cates]);
@@ -74,8 +72,6 @@ class CatesController extends Controller
     	//验证 必填
     	$this->validate($request,[
     		'cname' => 'required',
-    		
-    
     	],[
 
     		'cname.required' => '请填写分类名称',
@@ -101,7 +97,6 @@ class CatesController extends Controller
         }
 
         //将数据压入到数据库
-        
         $cate = new Cates;
         $cate->cname = $request->input('cname','');
         $cate->pid = $pid;
