@@ -50,11 +50,7 @@
 		                    <td style="text-align: center;">{{ $v->created_at }}</td>
 		                    <td style="text-align: center;">
 								<a href="/admin/adminuser/{{ $v->id }}/edit" class="btn btn-info">修改</a>
-								<form action="/admin/adminuser/{{ $v->id }}" method="post" style="display: inline-block;">
-									{{ csrf_field() }}
-									{{ method_field('DELETE') }}
-									<input type="submit" value="删除" class="btn btn-success">
-								</form>
+								<a title="删除" class="btn btn-danger" token="{{ csrf_token() }}" onclick="member_del(this,'{{ $v->id }}')" href="javascript:;">删除</a>
 		                    </td>
 		                </tr>
 		               @endforeach
@@ -65,6 +61,29 @@
 	        	<div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
            			{{ $adminuser->appends($params)->links() }}
         		</div>
+				
+				<script type="text/javascript">
+					/*删除*/
+				    function member_del(obj,id){
+				      	let token = $(obj).attr('token');
+				      	$.ajaxSetup({headers: {'X-CSRF-TOKEN': token}});
+						if(!window.confirm('你确定要删除吗?')){
+							return false;
+						}
+				      	// 发送ajax删除
+				      	$.post('/admin/adminuser/del',{id:id,_method:"DELETE"},function(res){
+				      	if(res == 'ok'){
+							// 删除tr节点
+				            alert('删除成功');
+							window.location.href = window.location.href;
+						}else{
+							alert('删除失败')
+						}
+				    },'html')
+				              
+				};
+        		</script>
+
         		<style>
 			        .pagination{
 			            margin:0px;

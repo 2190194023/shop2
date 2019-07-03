@@ -13,13 +13,20 @@ class RolesController extends Controller
     {
         return [
             'IndexController'=>'首页',
-            'IndexController'=>'后台首页',
+            'LoginController'=>'修改头像',
             'AdminuserController'=>'管理员管理',
             'UsersController'=>'用户管理',
             'RolesController'=>'角色管理',
             'NodesController'=>'权限管理',
-            'NodesController'=>'权限管理',
             'CatesController'=>'分类管理',
+            'SlideshowController'=>'轮播图管理',
+            'GoodsController'=>'商品管理',
+            'DiscussController'=>'商品评论管理',
+            'GoodsimgController'=>'商品图片管理',
+            'MiaoController'=>'商品秒杀管理',
+            'HuodongController'=>'商品活动管理',
+            'OrderController'=>'商品订单管理',
+            'LinkController'=>'友情链接管理',
         ];
     }
     /**

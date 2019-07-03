@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Users;
 use App\Models\Cates;
 
 class IndexController extends Controller
@@ -14,10 +15,19 @@ class IndexController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {  
+        if (!empty(session('home_userinfo'))) {
+            $id = session('home_userinfo')->id;
+            $user = Users::where('id',$id)->first();
+        }else{
+            $user = 0;
+        }
+       
+        
+
         $cate_data = Cates::where('pid',0)->paginate(9);
         // 视图  前台首页
-        return view('home.index.index',['cate_data'=>$cate_data]);
+        return view('home.index.index',['cate_data'=>$cate_data,'user'=>$user]);
     }
 
     /**

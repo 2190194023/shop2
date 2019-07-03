@@ -68,11 +68,6 @@
 		                    <td style="text-align: center;">{{ $v->aname }}</td>
 
 		                    <td style="text-align: center;">
-								<a href="" class="btn btn-info">修改</a>
-								<form action="" method="post" style="display: inline-block;">
-									
-									<input type="submit" value="删除" class="btn btn-success">
-								</form>
 								<a href="/admin/nodes/{{ $v->id }}/edit" class="btn btn-info">修改权限</a>
 		                    </td>
 		                </tr>

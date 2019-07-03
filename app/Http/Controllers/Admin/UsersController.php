@@ -145,20 +145,23 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        // 获取id值
+        $id = $request->input('id','');
+
         $res = Users::destroy($id);
 
-        // 删除头像
-        Storage::delete('file.jpg');
+        // 删除以前旧的图片
+        Storage::delete($request->input('old_profile'));
 
-
-        
+        // 判断逻辑
         if($res){
-            return redirect('admin/users')->with('success','删除成功');
+            echo "ok";
+            // return redirect('admin/users')->with('success','删除成功');
         }else{
-
-            return back()->with('error','删除失败');
+            echo "error";
+            // return back()->with('error','删除失败');
         }
     }
 }

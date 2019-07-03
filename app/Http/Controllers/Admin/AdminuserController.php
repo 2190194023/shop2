@@ -160,18 +160,20 @@ class AdminuserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        // 获取id值
+        $id = $request->input('id','');
+
         $res = Adminuser::destroy($id);
 
         // 删除头像
         Storage::delete('file.jpg');
 
         if($res){
-            return redirect('admin/adminuser')->with('success','删除成功');
+            echo "ok";
         }else{
-
-            return back()->with('error','删除失败');
+            echo "error";
         }
     }
 }
