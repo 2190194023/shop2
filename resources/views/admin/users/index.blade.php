@@ -10,15 +10,13 @@
             	<div class="dataTables_filter" id="DataTables_Table_1_filter">
             		<form action="/admin/users" method="get">
 	            		<label>
-	            			用户名 : 
-	            			<input type="text" name="search_uname" value="{{ $params['search_uname'] or '' }}">
+	            			<input type="text" name="search_uname" placeholder="用户名" value="{{ $params['search_uname'] or '' }}">
 	            		</label>
 	            		<label>
-	            			邮箱 : 
-	            			<input type="text" name="search_email" value="{{ $params['search_email'] or '' }}">
+	            			<input type="text" name="search_email" placeholder="邮箱" value="{{ $params['search_email'] or '' }}">
 	            		</label>
 	            		<label>
-							<input type="submit"  class="btn btn-info">
+							<input type="submit"  class="btn btn-success">
 	            		</label>
             		</form>
             	</div>

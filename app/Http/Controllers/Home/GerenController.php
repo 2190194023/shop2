@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cates;
 use App\Models\Users;
+use App\Models\Address;
 use Illuminate\Support\Facades\Storage;
 use DB;
 use Hash;
@@ -116,5 +117,117 @@ class GerenController extends Controller
         }else{
             return back();
         }
+    }
+
+    public function ress($id)
+    {
+
+        // 获取数据库信息
+        $user = Users::find($id);
+
+        $ress = DB::table('address')->where('uid',$id)->get();
+
+        // 列表页 
+        $cate_data = Cates::where('pid',0)->paginate(7);
+
+        // 加载修改页面
+        return view('home.geren.ress',['cate_data'=>$cate_data,'ress'=>$ress,'user'=>$user]);
+    }
+
+    public function ressjia($id)
+    {
+        // 获取数据库信息
+        $user = Users::find($id);
+
+        $ress = DB::table('address')->where('uid',$id)->get();
+
+        // 列表页 
+        $cate_data = Cates::where('pid',0)->paginate(7);
+
+        // 加载修改页面
+        return view('home.geren.ressjia',['cate_data'=>$cate_data,'ress'=>$ress,'user'=>$user]);
+    }
+
+    public function doressjia(Request $request)
+    {
+        $uid = $request->input('id','');
+        $province = $request->input('province','');
+        $country = $request->input('country','');
+        $town = $request->input('town','');
+
+        if(empty($province) || empty($country) || empty($town)){
+            return back();
+        }
+
+        $data = new Address;
+
+        $data->uid = $uid;
+        $data->name = $request->input('name','');
+        $data->phone = $request->input('phone','');
+        $data->province = $request->input('addr','');
+        $data->cont = $province.$country.$town;
+        $data->moren = 1;
+        $data->bian = $request->input('bian','');
+
+        $res = $data->save();
+        if($res){
+            echo "<script>alert('添加成功');location.href='/home/geren/ress/$uid'</script>";
+        }else{
+            return back();
+        }
+    }
+    // 修改地址
+    public function show($id)
+    {
+        // 列表页 
+        $cate_data = Cates::where('pid',0)->paginate(7);
+       
+        // 获取地址数据
+        $address = Address::where('id',$id)->first();
+        // 获取数据库信息
+        $user = Users::where('id',$address->uid)->first();
+
+        return view('home.geren.moren',['cate_data'=>$cate_data,'user'=>$user,'address'=>$address]);
+    }
+
+    // 执行修改 地址
+    public function moren(Request $request)
+    {
+        // 获取数据
+        $id = $request->input('id','');
+        $uid = $request->input('uid','');
+        $moren = $request->input('moren','');
+        $address = Address::where('id',$id)->first();
+        // 压入数据
+        $address['uid'] = $uid;
+        $address['phone'] = $request->input('phone','');
+        $address['cont'] = $request->input('cont',$address['cont']);
+        $address['province'] = $request->input('province','');
+        $address['bian'] = $request->input('bian','');
+
+        // 获取 本用户 所有 地址
+        $adrs = Address::where('uid',$uid)->get();
+        // 判断  只能有一个默认地址  如果设置  那么其他地址将更改为 普通地址
+        if($moren == 1){
+            foreach($adrs as $k=>$v){
+                DB::table('address')->where('id',$v->id)->update(['moren'=>0]);
+            }
+        }
+        // 压入数据
+        $address['moren'] = $moren;
+        $res = $address->save();
+        if($res){
+            echo "<script>alert('修改成功');location.href='/home/geren/ress/$uid'</script>";
+        }else{
+            return back()->with('error','修改失败');
+        }
+    }
+
+    // 执行删除 收货地址
+    public function destory($id)
+    {
+        Address::where('id',$id)->delete();
+
+        return back();
     }
 }

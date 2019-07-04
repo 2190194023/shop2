@@ -13,11 +13,15 @@ class NodesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = DB::table('nodes')->get();
+        // 接收搜索的参数
+        $search_uname = $request->input('search_uname','');
+
+        $data = DB::table('nodes')->where('desc','like','%'.$search_uname.'%')->paginate(15);
+        
         // 加载视图
-        return view('admin.nodes.index',['data'=>$data]);
+        return view('admin.nodes.index',['data'=>$data,'params'=>$request->all()]);
     }
 
     /**

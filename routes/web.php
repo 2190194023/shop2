@@ -57,6 +57,20 @@ Route::get('home/geren/pass/{id}','Home\GerenController@pass');
 // 路由: 前台执行修改密码
 Route::post('home/geren/dopass/{id}','Home\GerenController@dopass');
 
+// 路由: 前台收货地址
+Route::get('home/geren/ress/{id}','Home\GerenController@ress');
+
+// 路由: 前台添加收货地址
+Route::get('home/geren/ressjia/{id}','Home\GerenController@ressjia');
+// 路由: 前台执行添加收货地址
+Route::post('home/geren/doressjia','Home\GerenController@doressjia');
+
+// 路由: 前台执行删除收货地址
+Route::get('home/geren/del/{id}','Home\GerenController@destory');
+// 路由: 前台修改默认收货地址
+Route::get('home/geren/show/{id}','Home\GerenController@show');
+// 路由: 前台执行修改默认收货地址
+Route::post('home/geren/moren','Home\GerenController@moren');
 
 // 路由: 前台列表
 Route::resource('home/list','Home\ListController');

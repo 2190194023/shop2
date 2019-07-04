@@ -169,49 +169,42 @@
 		<!-- 内容 开始 -->
 		<div class="member-right fr">
 			<div class="member-head">
-				<div class="member-heels fl"><h2>修改密码</h2></div>
+				<div class="member-heels fl"><h2>地址信息</h2></div>
 			</div>
 			<div class="member-border">
 				
 				<div class="member-caution clearfix">
-					<form action="/home/geren/dopass/{{ $user->id }}" method="post" enctype="multipart/form-data">
-						{{ csrf_field() }}
-						<table>
-							@if (count($errors) > 0)
-						        <div class="mws-form-message error">
-						            <ul>
-						                @foreach ($errors->all() as $error)
-						                    <li>{{ $error }}</li>
-						                @endforeach
-						            </ul>
-						        </div>
-						    @endif
+					<ul>
+						<li class="clearfix">
+							<table style="text-align: center">
+								<tr style="font-size: 20px;">
+									<th>收件人</th>
+									<th>联系方式</th>
+									<th>地区</th>
+									<th>详情地址</th>
+									<th>邮编</th>
+									<th>操作</th>
+								</tr>
 
-						    @if(session('error'))
-							   <script  type="text/javascript">   
-							    	
-							    	layer.alert('{{ session('error') }}', {icon: 6});
-							   </script>
-							@endif
-							<tr>
-								<th>原密码:</th>
-								<td><input class="ty" type="password" name="oldpass"></td>
-							</tr>
-							<tr>
-								<th>新密码:</th>
-								<td><input class="ty" type="password" name="password"></td>
-							</tr>
-							<tr>
-								<th>确认密码:</th>
-								<td><input class="ty" type="password" name="repass"></td>
-							</tr>
-							<tr>
-								<td></td>
-								<td><input type="submit" class="btn" value="修改"></td>
-							</tr>
-						</table>
-					</form>
-					
+								@foreach($ress as $k=>$v)
+								<tr>
+									<td>{{ $v->name }}</td>
+									<td>{{ $v->phone }}</td>
+									<td>{{ $v->cont }}</td>
+									<td>{{ $v->province }}</td>
+									<td>{{ $v->bian }}</td>
+									<td>
+										<button class="btn" onclick="window.location.href='/home/geren/show/{{ $v->id }}'">修改</button>
+										<button class="btn" onclick="window.location.href='/home/geren/del/{{ $v->id }}'">删除</button>
+									</td>
+								</tr>
+								@endforeach
+							</table>
+							<li class="clearfix">
+								<div class="warn3"><a href="/home/geren/ressjia/{{ $user->id }}">添加地址</a></div>
+							</li>
+						</li>
+					</ul>
 					<div class="member-prompt">
 						<p>安全提示：</p>
 						<p>1. 注意防范进入钓鱼网站，不要轻信各种即时通讯工具发送的商品或支付链接，谨防网购诈骗。</p>

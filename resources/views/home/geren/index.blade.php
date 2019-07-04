@@ -130,7 +130,7 @@
 					<dd class="cur"><a href="#">我的订单</a></dd>
 					<dd class="cur"><a href="#">我的收藏</a></dd>
 					<dd class="cur"><a href="#">我的评价</a></dd>
-					<dd class="cur"><a href="#">地址管理</a></dd>
+					<dd class="cur"><a href="/home/geren/ress/{{ $user->id }}">地址管理</a></dd>
 				</dl>
 				<dl>
 					<dt>客户服务</dt>

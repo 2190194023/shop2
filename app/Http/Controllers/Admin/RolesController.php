@@ -34,13 +34,14 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search_uname = $request->input('search_uname','');
         // 显示角色
-        $roles_data = DB::table('roles')->get();
+        $roles_data = DB::table('roles')->where('rname','like','%'.$search_uname.'%')->paginate(5);
 
         // 加载视图
-        return view('admin.roles.index',['roles_data'=>$roles_data]);
+        return view('admin.roles.index',['roles_data'=>$roles_data,'params'=>$request->all()]);
     }
 
     /**

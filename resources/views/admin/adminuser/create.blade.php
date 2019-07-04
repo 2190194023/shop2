@@ -78,7 +78,6 @@
 					    <div class="mws-form-item" style="width:300px;">				    
 					     <input type="file" name="profile" style="position: absolute; top: 0px; right: 0px; margin: 0px; cursor: pointer; font-size: 999px; opacity: 0; z-index: 999;">    
 					    </div>
-
 					</div>  
 
 					<div class="mws-form-row">
@@ -93,7 +92,7 @@
         					</ul>
         				</div>   
 
-					</div>   
+					</div>         
 	            </div>
 	            <div class="mws-button-row">
 	                <input type="submit" value="提交" class="btn btn-info">               

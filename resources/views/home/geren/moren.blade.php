@@ -153,11 +153,11 @@
 			<div class="member-lists">
 				<dl>
 					<dt>我的商城</dt>
-					<dd class="cur"><a href="">账户安全</a></dd>
+					<dd class="cur"><a href="/home/geren/pass/{{ $user->id }}">账户安全</a></dd>
 					<dd class="cur"><a href="#">我的订单</a></dd>
 					<dd class="cur"><a href="#">我的收藏</a></dd>
 					<dd class="cur"><a href="#">我的评价</a></dd>
-					<dd class="cur"><a href="#">地址管理</a></dd>
+					<dd class="cur"><a href="/home/geren/ress/{{ $user->id }}">地址管理</a></dd>
 				</dl>
 				<dl>
 					<dt>客户服务</dt>
@@ -169,41 +169,53 @@
 		<!-- 内容 开始 -->
 		<div class="member-right fr">
 			<div class="member-head">
-				<div class="member-heels fl"><h2>修改密码</h2></div>
+				<div class="member-heels fl"><h2>添加地址</h2></div>
 			</div>
 			<div class="member-border">
 				
 				<div class="member-caution clearfix">
-					<form action="/home/geren/dopass/{{ $user->id }}" method="post" enctype="multipart/form-data">
+					<form action="/home/geren/moren" method="post" enctype="multipart/form-data">
 						{{ csrf_field() }}
 						<table>
-							@if (count($errors) > 0)
-						        <div class="mws-form-message error">
-						            <ul>
-						                @foreach ($errors->all() as $error)
-						                    <li>{{ $error }}</li>
-						                @endforeach
-						            </ul>
-						        </div>
-						    @endif
-
-						    @if(session('error'))
-							   <script  type="text/javascript">   
-							    	
-							    	layer.alert('{{ session('error') }}', {icon: 6});
-							   </script>
-							@endif
 							<tr>
-								<th>原密码:</th>
-								<td><input class="ty" type="password" name="oldpass"></td>
+								<th>收件人:</th>
+								<td>
+									<input type="hidden" name="uid" value="{{ $address->uid }}">
+									<input type="hidden" name="id" value="{{ $address->id }}">
+									<input class="ty" type="text" name="name" value="{{ $address->name }}">
+								</td>
 							</tr>
 							<tr>
-								<th>新密码:</th>
-								<td><input class="ty" type="password" name="password"></td>
+								<th>联系方式:</th>
+								<td><input class="ty" type="text" name="phone" value="{{ $address->phone }}"></td>
 							</tr>
 							<tr>
-								<th>确认密码:</th>
-								<td><input class="ty" type="password" name="repass"></td>
+								<th>地区:</th>
+								<td>
+									<select id="Province" runat="server" name="province" style="width: 90px" ></select>
+									<select id="Country" runat="server" name="country" style="width: 90px"></select>
+									<select id="Town" runat="server" name="town" style="width: 90px"></select>
+								</td> 
+							</tr>
+							<tr>
+								<th>详细地址：</th>
+								<td><textarea  class="ty" name="addr">{{ $address->province }}</textarea></td>
+							</tr>
+							<tr>
+								<th>邮编:</th>
+								<td><input class="ty" type="text" name="bian" value="{{ $address->bian }}"></td>
+							</tr>
+							<tr>
+								<th>默认地址:</th>
+								<td>
+									@if($address->moren == 1)
+									<input class="btn" type="radio" name="moren" checked value="1">默认
+									<input class="btn" type="radio" name="moren" value="0">不默认
+									@else
+									<input class="btn" type="radio" name="moren" value="1">默认
+									<input class="btn" type="radio" name="moren" checked value="0">不默认
+									@endif
+								</td>
 							</tr>
 							<tr>
 								<td></td>
@@ -211,6 +223,10 @@
 							</tr>
 						</table>
 					</form>
+					<script type="text/javascript" src="/area.js"></script>
+					<script language="javascript">
+						setup();
+				    </script>
 					
 					<div class="member-prompt">
 						<p>安全提示：</p>
