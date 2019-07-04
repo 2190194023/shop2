@@ -20,10 +20,12 @@ class LoginController extends Controller
     // 执行登录
     public function dologin(Request $request)
     {
+
         $uname = $request->input('uname','');
         $password = $request->input('password','');
 
         $admin_user_data = DB::table('admin_users')->where('uname',$uname)->first();
+
 
         if (!$admin_user_data) {
             return back()->with('error','用户名或密码错误');
@@ -58,7 +60,6 @@ class LoginController extends Controller
         }
               
         session(['admin_user_nodes'=>$temp]);
-
 
         // 跳转
         return redirect('admin');
@@ -171,4 +172,5 @@ class LoginController extends Controller
             return back();
         }
     }
+
 }

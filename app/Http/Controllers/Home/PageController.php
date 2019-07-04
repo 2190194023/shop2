@@ -10,6 +10,7 @@ use App\Models\Goodsimg;
 use App\Models\Discuss;
 use App\Models\Users;
 use App\Models\Mycar;
+use App\Models\Link;
 use DB;
 
 class PageController extends Controller
@@ -78,8 +79,11 @@ class PageController extends Controller
 
         // 商品评价 数量
         $num = $discuss_data->count();
+
+        //查询所有友情链接
+        $link = Link::where('status',1)->get();
         // 商品详情首页 视图
-        return view('home.page.index',['cate_data'=>$cate_data,'num'=>$num,'user'=>$user,'discuss_data'=>$discuss_data,'goods'=>$goods,'gimg'=>$gimg,'goods_data'=>$goods_data,'mycarnum'=>$mycarnum]);
+        return view('home.page.index',['cate_data'=>$cate_data,'num'=>$num,'user'=>$user,'discuss_data'=>$discuss_data,'goods'=>$goods,'gimg'=>$gimg,'goods_data'=>$goods_data,'mycarnum'=>$mycarnum,'link'=>$link]);
     }
 
     /**

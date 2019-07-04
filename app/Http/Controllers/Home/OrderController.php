@@ -12,6 +12,7 @@ use App\Models\OrderDetail;
 use App\Models\Address;
 use App\Models\Discuss;
 use App\Models\Users;
+use App\Models\Link;
 
 class OrderController extends Controller
 {
@@ -98,13 +99,15 @@ class OrderController extends Controller
                 Mycar::where('id',$v->id)->delete();
         }
         
+        //查询所有友情链接
+        $link = Link::where('status',1)->get();
 
         // 查询订单
         $order_data = Order::where('uid',$uid)->paginate(20);
 
 
         // 订单页 视图
-        return view('home.order.index',['cate_data'=>$cate_data,'order_data'=>$order_data,'user'=>$user,'mycarnum'=>$mycarnum]);
+        return view('home.order.index',['cate_data'=>$cate_data,'order_data'=>$order_data,'user'=>$user,'mycarnum'=>$mycarnum,'link'=>$link]);
     }
 
     /**
@@ -189,8 +192,11 @@ class OrderController extends Controller
         // 获取用户名
         $user = Users::where('id',$uid)->first();
 
+        //查询所有友情链接
+        $link = Link::where('status',1)->get();
+
         // 视图 跳转 评论商品页
-        return view('home.order.discuss',['cate_data'=>$cate_data,'goods'=>$goods,'user'=>$user,'order'=>$order,'mycarnum'=>$mycarnum]);
+        return view('home.order.discuss',['cate_data'=>$cate_data,'goods'=>$goods,'user'=>$user,'order'=>$order,'mycarnum'=>$mycarnum,'link'=>$link]);
     }
 
     // 订单详情页
@@ -221,7 +227,10 @@ class OrderController extends Controller
         // 获取商品信息
         $goods = Goods::where('id',$detail->money)->first();
 
-        return view('home.order.detail',['cate_data'=>$cate_data,'user'=>$user,'detail'=>$detail,'uname'=>$uname,'goods'=>$goods,'order'=>$order,'mycarnum'=>$mycarnum]);
+        //查询所有友情链接
+        $link = Link::where('status',1)->get();
+
+        return view('home.order.detail',['cate_data'=>$cate_data,'user'=>$user,'detail'=>$detail,'uname'=>$uname,'goods'=>$goods,'order'=>$order,'mycarnum'=>$mycarnum,'link'=>$link]);
         
         
     }

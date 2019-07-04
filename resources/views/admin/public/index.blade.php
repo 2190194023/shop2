@@ -36,7 +36,6 @@
 
 <title>后台管理</title>
 
-
 </head>
 
 <body>
@@ -133,7 +132,6 @@
                         </ul>
                     </li>
                 </ul>
-
                 <ul>
                     <li class="active">
                         <a href="#">
@@ -144,18 +142,33 @@
                         </ul>
                     </li>
                 </ul>
-
                 <ul>
                     <li class="active">
-                        <a href="JavaScript:;"><i class="icon-google-plus"></i>分类管理</a>
+                        <a href="#"><i class="icon-list"></i> 订单管理</a>
                         <ul>
-                            <li><a href="/admin/cates">浏览分类</a></li>
-                            <li><a href="/admin/cates/create">添加分类</a></li>
+                            <li><a href="/admin/order">订单列表</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="active">
+                        <a href="JavaScript:;"><i class="icon-list"></i> 分类管理</a>
+                        <ul>
+                            <li><a href="/admin/cates">分类列表</a></li>
+                            <li><a href="/admin/cates/create">分类添加</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="active">
+                        <a href="JavaScript:;"><i class="icon-list"></i> 友情链接管理</a>
+                        <ul>
+                            <li><a href="/admin/link">友情链接列表</a></li>
+                            <li><a href="/admin/link/create">友情链接添加</a></li>
 
                         </ul>
                     </li>
                 </ul>
-
                 <ul>
                     <li class="active">
 
@@ -166,7 +179,6 @@
                         </ul>
                         </li>
                 </ul>
-                
                 <ul>
                     <li class="active">
                         <a href="JavaScript:;"><i class="icon-list"></i> 商品管理</a>
@@ -185,7 +197,6 @@
                         </ul>
                     </li>
                 </ul>
-
                 <ul>
                     <li class="active">
                         <a href="JavaScript:;"><i class="icon-list"></i>秒杀管理</a>
@@ -204,24 +215,12 @@
                         </ul>
                     </li>
                 </ul>
-
                 <ul>
                     <li class="active">
-                        <a href="#"><i class="icon-list"></i> 订单管理</a>
+                        <a href="JavaScript:;"><i class="icon-list"></i>广告管理</a>
                         <ul>
-                            <li><a href="/admin/order">订单列表</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                
-                
-                <ul>
-                    <li class="active">
-                        <a href="JavaScript:;"><i class="icon-list"></i> 友情链接管理</a>
-                        <ul>
-                            <li><a href="/admin/link">友情链接列表</a></li>
-                            <li><a href="/admin/link/create">友情链接添加</a></li>
-
+                            <li><a href="/admin/guang">广告列表</a></li>
+                            <li><a href="/admin/guang/create">添加广告</a></li>
                         </ul>
                     </li>
                 </ul>

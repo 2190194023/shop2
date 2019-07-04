@@ -13,6 +13,7 @@ class NodesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(Request $request)
     {
         // 接收搜索的参数
@@ -22,6 +23,7 @@ class NodesController extends Controller
         
         // 加载视图
         return view('admin.nodes.index',['data'=>$data,'params'=>$request->all()]);
+
     }
 
     /**
@@ -44,7 +46,9 @@ class NodesController extends Controller
     public function store(Request $request)
     {
         $cname = $request->input('cname');
+
         $controller = $cname.'Controller';
+
 
         $aname = $request->input('aname');
         $desc = $request->input('desc');
@@ -80,6 +84,7 @@ class NodesController extends Controller
         $nodes = DB::table('nodes')->where('id',$id)->first();
 
         return view('admin.nodes.edit',['nodes'=>$nodes]);
+
     }
 
     /**
@@ -91,6 +96,7 @@ class NodesController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $data['desc'] = $request->input('desc','');
         $data['cname'] = $request->input('cname','');
         $data['aname'] = $request->input('aname','');
@@ -103,6 +109,7 @@ class NodesController extends Controller
         }else{
             return back()->with('error','修改失败');
         }
+
     }
 
     /**

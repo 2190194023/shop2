@@ -8,8 +8,8 @@ use App\Models\Cates;
 use App\Models\Goods;
 use App\Models\Users;
 use App\Models\Mycar;
+use App\Models\Link;
 use DB;
-
 class ListController extends Controller
 {
     /**
@@ -35,8 +35,11 @@ class ListController extends Controller
 
         // 获取 所有栏目名称 50条 一页
         $cate_res = Cates::paginate(50);
+
+        //查询所有友情链接
+        $link = Link::where('status',1)->get();
         // 视图
-        return view('home.list.allcates',['cate_data'=>$cate_data,'cate_res'=>$cate_res,'user'=>$user,'mycarnum'=>$mycarnum]);
+        return view('home.list.allcates',['cate_data'=>$cate_data,'cate_res'=>$cate_res,'user'=>$user,'mycarnum'=>$mycarnum,'link'=>$link]);
     }
 
     /**
@@ -66,6 +69,7 @@ class ListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show(Request $request,$id)
     {
 
@@ -73,6 +77,7 @@ class ListController extends Controller
         $cname = Cates::where('id',$id)->first(['cname']);
         // 列表页 
         $cate_data = Cates::where('pid',0)->paginate(7);
+
         // 获取用户 id
         $uid = session('home_userinfo')['id'];
 
@@ -84,9 +89,13 @@ class ListController extends Controller
         // 获取用户名
         $user = Users::where('id',$uid)->first();
 
+
         // 获取 所有 栏目名称 15条
         $cate_res = Cates::paginate(15);
+        //查询所有友情链接
+        $link = Link::where('status',1)->get();
         // 获取 此栏目下商品数据 24条
+
         if($id == 000){
             $goods_data = Goods::paginate(24);
         }else if($id == 001){
@@ -100,7 +109,8 @@ class ListController extends Controller
         
 
         // 视图
-        return view('home.list.index',['cate_data'=>$cate_data,'goods_data'=>$goods_data,'cname'=>$cname,'user'=>$user,'cate_res'=>$cate_res,'mycarnum'=>$mycarnum]);
+        return view('home.list.index',['cate_data'=>$cate_data,'goods_data'=>$goods_data,'cname'=>$cname,'user'=>$user,'cate_res'=>$cate_res,'mycarnum'=>$mycarnum,'link'=>$link]);
+
     }
 
     /**

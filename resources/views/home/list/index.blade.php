@@ -1,5 +1,6 @@
 @extends('home.public.header')
 
+
 <body>
 
 <header id="pc-header">
@@ -97,9 +98,7 @@
         <!-- 导航   end  -->
     </div>
 
-
 </header>
-
 
 
 <div class="center" style="background:#fff;">

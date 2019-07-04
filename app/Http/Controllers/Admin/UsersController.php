@@ -162,6 +162,7 @@ class UsersController extends Controller
         }else{
             echo "error";
             // return back()->with('error','删除失败');
+
         }
     }
 }

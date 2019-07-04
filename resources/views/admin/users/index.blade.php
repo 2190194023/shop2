@@ -55,8 +55,6 @@
 
 	        	</table>
 
-	            
-
             	<div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
            			{{ $users->appends($params)->links() }}
             
@@ -116,7 +114,6 @@
 			            background-color: #f08dcc;
 			        }
 				</style>
-
 
         	</div>
         </div>

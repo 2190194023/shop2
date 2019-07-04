@@ -44,7 +44,6 @@
                                     <td>{{ $v->gpic }}</td>
                                     <td><img src="/uploads/{{ $v->lujing }}" style="width:50px;"></td>
                                     <td>
-                                    	
                                     	<a href="/admin/goodsimg/{{ $v->id }}/edit" class="btn btn-info">修改</a>
                                     	<form action="/admin/goodsimg/{{ $v->id }}" method="post" style="display:inline-block;">
                                     		{{ csrf_field() }}
@@ -140,4 +139,5 @@
 			            clear: both;
 			        }
 			    </style>
+
 @endsection

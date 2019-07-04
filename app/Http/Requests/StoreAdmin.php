@@ -30,7 +30,6 @@ class StoreAdmin extends FormRequest
             'phone' => 'required|regex:/^1{1}[3-8]{1}[\d]{9}$/',
             'email' => 'required|email:',
             'profile' => 'required',
-
         ];
     }
 

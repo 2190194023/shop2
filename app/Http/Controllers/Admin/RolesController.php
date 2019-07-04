@@ -114,6 +114,7 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
+
         $roles = Role::find($id);
 
         $nodes = DB::table('nodes')->get();
@@ -134,6 +135,7 @@ class RolesController extends Controller
         }
 
         return view('admin.roles.edit',['roles'=>$roles,'list'=>$list,'conall'=>self::conall(),'temp'=>$temp]);
+
     }
 
     /**
@@ -145,6 +147,7 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
+
 
         $rname = $request->input('rname','');
         $nids = $request->input('nids','');
@@ -163,6 +166,7 @@ class RolesController extends Controller
         }else{
             return back()->with('error','修改失败');
         }
+
     }
 
     /**
@@ -173,6 +177,7 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
+
         $res = Role::destroy($id);
 
         if($res){
@@ -181,5 +186,6 @@ class RolesController extends Controller
 
             return back()->with('error','删除失败');
         }
+
     }
 }

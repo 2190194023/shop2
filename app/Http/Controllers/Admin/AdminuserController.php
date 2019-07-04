@@ -38,11 +38,13 @@ class AdminuserController extends Controller
      */
     public function create()
     {
+
         // 获取所有角色
         $roles_data = DB::table('roles')->get();
 
         // 显示用户添加页面
         return view('admin.adminuser.create',['roles_data'=>$roles_data]);
+
     }
 
     /**
@@ -80,6 +82,7 @@ class AdminuserController extends Controller
         $res = DB::table('adminusers_roles')->insert(['uid'=>$uid,'rid'=>$rid]);
 
         if($uid && $res){
+
             return redirect('admin/adminuser')->with('success','添加成功');
         }else{
 
@@ -109,12 +112,14 @@ class AdminuserController extends Controller
         // 获取数据库信息
         $adminuser = Adminuser::find($id);
 
+
         // 获取所有角色
         $roles_data = DB::table('roles')->get();
 
         $adminrol = DB::table('adminusers_roles')->where('uid',$id)->first();
         // 加载修改页面
         return view('admin.adminuser.edit',['adminuser'=>$adminuser,'roles_data'=>$roles_data,'adminrol'=>$adminrol]);
+
     }
 
     /**
@@ -132,6 +137,7 @@ class AdminuserController extends Controller
         $adminuser = Adminuser::find($id);
         $adminuser->phone = $request->input('phone','');
         $adminuser->email = $request->input('email','');
+
 
         $uid = $adminuser->save();
         $res = DB::table('adminusers_roles')->update(['uid'=>$uid,'rid'=>$rid]);
@@ -156,6 +162,7 @@ class AdminuserController extends Controller
 
         // 删除头像
         Storage::delete('file.jpg');
+
 
         if($res){
             return redirect('admin/adminuser')->with('success','删除成功');

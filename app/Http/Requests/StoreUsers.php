@@ -54,7 +54,6 @@ class StoreUsers extends FormRequest
 
             'email.required'=>'邮箱必填',
             'email.email'=>'邮箱格式不正确',
-            
             'profile.required'=>'头像必填',
         ];
     }

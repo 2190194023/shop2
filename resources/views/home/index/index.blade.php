@@ -88,512 +88,39 @@
 		<!-- 导航   start  -->
 		<div class="yNavIndex">
 			<div class="pullDown">
-				<h2 class="pullDownTitle"><i class="icon-class"></i>所有商品分类</h2>
-				<ul class="pullDownList">
-					<li class="">
-						<i class="list-icon-2"></i>
-						<a href="" target="_blank">手机</a>
-						/<a href="" target="_blank">数码</a>
-						/<a href="" target="_blank">电脑办公</a>
-						<span></span>
-					</li>
-					<li>
-						<i class="list-icon-2"></i>
-						<a href="" target="_blank">女装</a>
-						/<a href="" target="_blank">内衣</a>
-						<span></span>
-					</li>
-					<li>
-						<i class="list-icon-2"></i>
-						<a href="" target="_blank">男装</a>
-						/<a href="" target="_blank">运动户外</a>
-						<span></span>
-					</li>
-					<li>
-						<i class="list-icon-2"></i>
-						<a href="" target="_blank">女鞋</a>
-						/<a href="" target="_blank">男鞋</a>
-						/<a href="" target="_blank">箱包</a>
-						<span></span>
-					</li>
-					<li>
-						<i class="list-icon-2"></i>
-						<a href="" target="_blank">化妆品</a>
-						/<a href="" target="_blank">个人护理</a>
-						<span></span>
-					</li>
-					<li>
-						<i class="list-icon-2"></i>
-						<a href="" target="_blank">母婴玩具</a>
-						<span></span>
-					</li>
-					<li>
-						<i class="list-icon-2"></i>
-						<a href="" target="_blank">零食</a>
-						/<a href="" target="_blank">进口食品</a>
-						/<a href="" target="_blank">酒</a>
-						<span></span>
-					</li>
-					<li>
-						<i class="list-icon-2"></i>
-						<a href="" target="_blank">大家电</a>
-						/<a href="" target="_blank">生活电器</a>
-						<span></span>
-					</li>
-					<li>
-						<i class="list-icon-2"></i>
-						<a href="" target="_blank">家具建材</a>
-						<span></span>
-					</li>
-					<li>
-						<i class="list-icon-2"></i>
-						<a href="" target="_blank">珠宝饰品</a>
-						/<a href="" target="_blank">腕表眼镜</a>
-						<span></span>
-					</li>
-					<li>
-						<i class="list-icon-2"></i>
-						<a href="" target="_blank">汽车</a>
-						/<a href="" target="_blank">配件</a>
-						/<a href="" target="_blank">用品</a>
-						<span></span>
-					</li>
-					<li>
-						<i class="list-icon-2"></i>
-						<a href="" target="_blank">家纺</a>
-						/<a href="" target="_blank">家饰</a>
-						/<a href="" target="_blank">鲜花</a>
-						<span></span>
-					</li>
-					<li>
-						<i class="list-icon-2"></i>
-						<a href="" target="_blank">医药保健</a>
-						<span></span>
-					</li>
-					<li>
-						<i class="list-icon-2"></i>
-						<a href="" target="_blank">厨具</a>
-						/<a href="" target="_blank">收纳</a>
-						/<a href="" target="_blank">宠物</a>
-						<span></span>
-					</li>
-					<li>
-						<i class="list-icon-2"></i>
-						<a href="" target="_blank">图书音像</a>
-						<span></span>
-					</li>
-				</ul>
-				<!-- 下拉详细列表具体分类 -->
-				<div class="yMenuListCon">
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
+				<h2 class="pullDownTitle"><i class="icon-class"></i>所有商品分类</h2>					
+					<ul class="pullDownList">
+						@foreach($common_title as $k=>$v)
+						<li class="">
+							<i class="list-icon-1"></i>
+							 @foreach($v->sub as $kk=>$vv)
+							<a href="/home/list/{{ $vv->id }}" target="_self">{{ $vv->cname }}&nbsp;&nbsp;</a>
+							@endforeach
+						</li>
+						@endforeach
+					</ul>
+					<!-- 下拉详细列表具体分类 -->		
+					<div class="yMenuListCon">
+						@foreach($common_title as $k=>$v)	
+						<div class="yMenuListConin">				
+							<div class="yMenuLCinList">						
+								 @foreach($v->sub as $kk=>$vv)
+								<h3><a href="/home/list/{{ $vv->id }}" class="yListName" target="_self">{{ $vv->cname }}</a></h3>									
+								<p>							
+									@foreach($vv->sub as $kkk=>$vvv)
+									<a href="/home/list/{{ $vvv->id }}" class="ecolor610" target="_self">{{ $vvv->cname }}</a>
+									@endforeach							
+								</p>
+								@endforeach
+							</div>
 						</div>
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-					</div>
-
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-					</div>
-
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-					</div>
-
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-					</div>
-
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-					</div>
-
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-					</div>
-
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-					</div>
-
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-					</div>
-
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-					</div>
-
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-					</div>
-
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-					</div>
-
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-					</div>
-
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-					</div>
-
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-					</div>
-
-					<div class="yMenuListConin">
-						<div class="yMenuLCinList">
-							<h3><a href="" class="yListName">精品男装</a><a href="" class="yListMore">更多 ></a></h3>
-							<p>
-								<a href="" class="ecolor610">大牌上新</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-								<a href="">商场同款</a>
-								<a href="">男装集结</a>
-								<a href="">羽绒服</a>
-								<a href="">加厚羽绒 </a>
-								<a href="">高帮鞋</a>
-							</p>
-						</div>
-					</div>
-
-				</div>
-
+						@endforeach
+					</div>									
 			</div>
 			<ul class="yMenuIndex">
-				<li><a href="/" target="_blank">首页</a></li>
-				@foreach($cate_data as $k=>$v)
-				<li><a href="/home/list/{{ $v->id }}" target="_blank">{{ $v->cname }}</a></li>
+				<li><a href="/" target="_self">首页</a></li>
+				@foreach($common_title as $k=>$v)
+				<li><a href="/home/list/{{ $v->id }}" target="_self">{{ $v->cname }}</a></li>
 				@endforeach
 			</ul>
 		</div>
@@ -605,52 +132,83 @@
 	<div class="yBanner">
 		<div class="yBannerList">
 			<div class="yBannerListIn">
-				<a href=""><img class="ymainBanner" src="/home/images/banner1.jpg"  width="100%"></a>
+
+				<div class="pi">
+
+<div class="pike">
+	@foreach($slideshow as $k=>$v)
+
+<div>
+<img src="/uploads/{{ $v->surl }}" alt="" style="width:820px;height:505px;">
+</div>
+	@endforeach
+</div>
+
+<div class="pike_prev"></div>
+
+<div class="pike_next"></div>
+
+<div class="pike_spot"></div>
+</div>
+<br>
+
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="/home/js/pike.min.js"></script>
+<script>
+       var myPi = new Pike(".pi", {
+          type: 1, // 轮播的类型(1渐隐)
+          automatic: true, //是否自动轮播 (默认false)
+          autoplay: 2000, //自动轮播毫秒 (默认3000)
+          hover: true, //鼠标悬停轮播 (默认false)
+          arrowColor: "yellow", //箭头颜色 (默认绿色)
+          arrowBackgroundType: 2, //箭头背景类型 (1: 方形, 2:圆形)
+          arrowBackground: 1, //箭头背景色 (1:白色,2:黑色, 默认:无颜色)
+          arrowTransparent: 0.2, //箭头背景透明度 (默认: 0.5)
+          spotColor: "white",//圆点颜色 (默认: 白色)
+          spotType: 1, //圆点的形状 (默认: 圆形, 1:圆形, 2.矩形)
+          spotSelectColor: "red", //圆点选中颜色 (默认绿色)
+          spotTransparent: 0.8, //圆点透明度 (默认0.8)
+          mousewheel: false, //是否开启鼠标滚动轮播(默认false)
+          drag: false, //是否开启鼠标拖动 (默认为: true, 如不需要拖动设置false即可)
+          loop: true, //是否循环轮播 (默认为: false)
+       });
+    </script>
+
+<style>
+    body{background-color: #EBEBEB}
+    .pi {
+      width: 820px;
+      height:505px;
+      margin:0px 0px;
+    }
+
+    </style>
+
 				<div class="yBannerListInRight">
-					<a href=""><img src="/home/images/BR2.png" width="100%"/></a>
-					<a href=""><img src="/home/images/BR3.png" width="100%" /></a>
+					@foreach($guang as $k=>$v)
+					<a href="{{ $v->furl }}"><img src="/uploads/{{ $v->surl }}" value="{{ $v->title}}" width="100%"/></a>
+					@endforeach
+
 				</div>
 			</div>
 		</div>
 
-		<div class="yBannerList ybannerHide">
-			<div class="yBannerListIn">
-				<a href=""><img class="ymainBanner" src="/home/images/banner1.jpg" width="100%"></a>
-				<div class="yBannerListInRight">
-					<a href=""><img src="/home/images/BR6.png" width="100%"/></a>
-					<a href=""><img src="/home/images/BR4.png" width="100%" /></a>
-				</div>
-			</div>
-		</div>
-
-		<div class="yBannerList ybannerHide">
-			<div class="yBannerListIn">
-				<a href=""><img class="ymainBanner" src="/home/images/banner1.jpg" width="100%"></a>
-				<div class="yBannerListInRight">
-					<a href=""><img src="/home/images/BR7.png" width="100%"/></a>
-					<a href=""><img src="/home/images/BR5.png" width="100%" /></a>
-				</div>
-			</div>
-		</div>
-	</div>
 	<!-- banner end -->
 </header>
 <section id="">
 	<div class="center pc-ad-img clearfix">
-		<div class="pc-center-img"><img src="/home/img/ad/ad1.jpg"></div>
-		<div class="pc-center-img"><img src="/home/img/ad/ad2.jpg"></div>
-		<div class="pc-center-img"><img src="/home/img/ad/ad3.jpg"></div>
-		<div class="pc-center-img"><img src="/home/img/ad/ad4.jpg"></div>
-		<div class="pc-center-img"><img src="/home/img/ad/ad5.jpg"></div>
+		@foreach($goods as $k=>$v)
+		<div class="pc-center-img"><a href="/home/page/{{ $v->id }}"><img src="/uploads/{{ $v->url }}"></a></div>
+		@endforeach
 	</div>
 </section>
 <section id="s">
+	<!-- 秒杀 start -->
 	<div class="center">
 		<div class="pc-center-he">
 			<div class="pc-box-he clearfix">
-				<div class="fl"><i class="pc-time-icon"></i></div>
+				<div class="fl"><span style="font-size:20;color:#fff;">今日秒杀</span></div>
 				<div class="time-item fr">
-					<span id="day_show">0天</span>
 					<strong id="hour_show">0时</strong>
 					<strong id="minute_show">00分</strong>
 					<strong id="second_show">00秒</strong>
@@ -666,10 +224,11 @@
 									<div class="v_cont" style="width:9648px;overflow: hidden">
 										<ul class="flder">
 											<li index="0">
+											@foreach ($miaosha as $k=>$v)
 												<div class="xsq_deal_wrapper">
-													<a class="saleDeal" href="page.html" target="_blank">
+													<a class="saleDeal" href="/home/page/{{ $v['id'] }}" target="_self">
 														<div class="dealCon">
-															<img class="dealImg" src="/home/images/xlqg1.jpg" alt="">
+															<img class="dealImg" src="/uploads/{{ $v['url'] }}" alt="">
 															<div class="zt2Qrcode overlay">
 																<div class="xsqMask"></div>
 																<p class="word1">15:00开抢</p>
@@ -679,286 +238,20 @@
 															<!--<span class="soldOut xsqIcon"></span>-->
 														</div>
 														<div class="title_new">
-															<p class="word" title="YDA-826E 除湿机家用抽湿机除湿器（除湿、干衣力荐）">YDA-826E 除湿机家用抽湿机除湿器（除湿、干衣力荐）</p>
+
+															<p class="word" title="{{ $v['gdescr'] }}">{{ $v['gname'] }}</p>
 														</div>
 														<div class="dealInfo">
-															<span class="price">¥<em>299</em></span>
+															<span class="price"><strike>￥{{ $v['gprice'] }}</strike><em>{{ $miao[$k]->maney }}</em></span>
 
-															<span class="shop_preferential">满2件8.8折</span>
+															<span class="shop_preferential">数量:{{ $miao[$k]->mouse}}</span>
 														</div>
 													</a>
 												</div>
-												<div class="xsq_deal_wrapper">
-													<a class="saleDeal" href="" target="_blank">
-														<div class="dealCon">
-															<img class="dealImg" src="/home/images/xlqg2.jpg" alt="">
-															<div class="zt2Qrcode overlay">
-																<div class="xsqMask"></div>
-																<p class="word1">15:00开抢</p>
-																<p class="word2">限100件，抢完恢复25.8元</p>
-																<p class="word3">查看商品&gt;&gt;</p>
-															</div>
-															<div class="stock">
-																<div class="xsqMask"></div>
-																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
-															</div>
-														</div>
-														<div class="title_new">
-															<p class="word" title="升级版原汁机低速榨汁机HUZK24WNM "><span class="baoyouText">[包邮]</span>升级版原汁机低速榨汁机HUZK24WNM </p>
-														</div>
-														<div class="dealInfo">
-															<span class="price">¥<em>1980</em></span>
-
-															<span class="shop_preferential">满2件8.8折</span>
-														</div>
-													</a>
-												</div>
-												<div class="xsq_deal_wrapper">
-													<a class="saleDeal" href="" target="_blank">
-														<div class="dealCon">
-															<img class="dealImg" src="/home/images/xlqg3.jpg" alt="">
-															<div class="finish overlay">
-																<div class="xsqMask"></div>
-																<p class="word1">15:00开抢</p>
-																<p class="word2">限100件，抢完恢复25.8元</p>
-																<p class="word3">查看商品&gt;&gt;</p>
-															</div>
-															<span class="finishIcon xsqIcon"></span>
-														</div>
-														<div class="title_new">
-															<p class="word" title="飞利浦PHILIPS刷头HX6013标准3支装 "><span class="baoyouText">[包邮]</span>飞利浦PHILIPS刷头HX6013标准3支装 </p>
-														</div>
-														<div class="dealInfo">
-															<span class="price">¥<em>149</em></span>
-
-															<span class="shop_preferential">满2件8.8折</span>
-														</div>
-													</a>
-												</div>
-												<div class="xsq_deal_wrapper">
-													<a class="saleDeal" href="" target="_blank">
-														<div class="dealCon">
-															<img class="dealImg" src="/home/images/xlqg4.jpg" alt="">
-															<div class="zt2Qrcode overlay">
-																<div class="xsqMask"></div>
-																<p class="word1">15:00开抢</p>
-																<p class="word2">限100件，抢完恢复25.8元</p>
-																<p class="word3">查看商品&gt;&gt;</p>
-															</div>
-															<div class="stock">
-																<div class="xsqMask"></div>
-																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
-															</div>
-														</div>
-														<div class="title_new">
-															<p class="word" title="贝拉米 Bellamy’s 婴幼儿有机奶粉3段"><span class="baoyouText">[包邮]</span>贝拉米 Bellamy’s 婴幼儿有机奶粉3段</p>
-														</div>
-														<div class="dealInfo">
-															<span class="price">¥<em>199</em></span>
-
-															<span class="shop_preferential">满2件8.8折</span>
-														</div>
-													</a>
-												</div>
-												<div class="xsq_deal_wrapper">
-													<a class="saleDeal" href="" target="_blank">
-														<div class="dealCon">
-															<img class="dealImg" src="/home/images/xlqg5.jpg" alt="">
-															<div class="zt2Qrcode overlay">
-																<div class="xsqMask"></div>
-																<p class="word1">15:00开抢</p>
-																<p class="word2">限100件，抢完恢复25.8元</p>
-																<p class="word3">查看商品&gt;&gt;</p>
-															</div>
-															<div class="stock">
-																<div class="xsqMask"></div>
-																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
-															</div>
-														</div>
-														<div class="title_new">
-															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
-														</div>
-														<div class="dealInfo">
-															<span class="price">¥<em>1</em></span>
-
-															<span class="shop_preferential">满2件8.8折</span>
-														</div>
-													</a>
-												</div>
-												<div class="xsq_deal_wrapper">
-													<a class="saleDeal" href="" target="_blank">
-														<div class="dealCon">
-															<img class="dealImg" src="/home/images/xlqg6.jpg" alt="">
-															<div class="zt2Qrcode overlay">
-																<div class="xsqMask"></div>
-																<p class="word1">15:00开抢</p>
-																<p class="word2">限100件，抢完恢复25.8元</p>
-																<p class="word3">查看商品&gt;&gt;</p>
-															</div>
-															<div class="stock">
-																<div class="xsqMask"></div>
-																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
-															</div>
-														</div>
-														<div class="title_new">
-															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
-														</div>
-														<div class="dealInfo">
-															<span class="price">¥<em>1</em></span>
-
-															<span class="shop_preferential">满2件8.8折</span>
-														</div>
-													</a>
-												</div>
-											</li>
-											<li index="1">
-												<div class="xsq_deal_wrapper">
-													<a class="saleDeal" href="" target="_blank">
-														<div class="dealCon">
-															<img class="dealImg" src="/home/images/xlqg7.jpg" alt="">
-															<div class="zt2Qrcode overlay">
-																<div class="xsqMask"></div>
-																<p class="word1">15:00开抢</p>
-																<p class="word2">限100件，抢完恢复25.8元</p>
-																<p class="word3">查看商品&gt;&gt;</p>
-															</div>
-														</div>
-														<div class="title_new">
-															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
-														</div>
-														<div class="dealInfo">
-															<span class="price">¥<em>2</em></span>
-
-															<span class="shop_preferential">满2件8.8折</span>
-														</div>
-													</a>
-												</div>
-												<div class="xsq_deal_wrapper">
-													<a class="saleDeal" href="" target="_blank">
-														<div class="dealCon">
-															<img class="dealImg" src="/home/images/xlqg8.jpg" alt="">
-															<div class="zt2Qrcode overlay">
-																<div class="xsqMask"></div>
-																<p class="word1">15:00开抢</p>
-																<p class="word2">限100件，抢完恢复25.8元</p>
-																<p class="word3">查看商品&gt;&gt;</p>
-															</div>
-															<div class="stock">
-																<div class="xsqMask"></div>
-																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
-															</div>
-														</div>
-														<div class="title_new">
-															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
-														</div>
-														<div class="dealInfo">
-															<span class="price">¥<em>2</em></span>
-
-															<span class="shop_preferential">满2件8.8折</span>
-														</div>
-													</a>
-												</div>
-												<div class="xsq_deal_wrapper">
-													<a class="saleDeal" href="" target="_blank">
-														<div class="dealCon">
-															<img class="dealImg" src="/home/images/xlqg9.jpg" alt="">
-															<div class="finish overlay">
-																<div class="xsqMask"></div>
-																<p class="word1">15:00开抢</p>
-																<p class="word2">限100件，抢完恢复25.8元</p>
-																<p class="word3">查看商品&gt;&gt;</p>
-															</div>
-															<span class="finishIcon xsqIcon"></span>
-														</div>
-														<div class="title_new">
-															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
-														</div>
-														<div class="dealInfo">
-															<span class="price">¥<em>2</em></span>
-
-															<span class="shop_preferential">满2件8.8折</span>
-														</div>
-													</a>
-												</div>
-												<div class="xsq_deal_wrapper">
-													<a class="saleDeal" href="" target="_blank">
-														<div class="dealCon">
-															<img class="dealImg" src="/home/images/xlqg10.jpg" alt="">
-															<div class="zt2Qrcode overlay">
-																<div class="xsqMask"></div>
-																<p class="word1">15:00开抢</p>
-																<p class="word2">限100件，抢完恢复25.8元</p>
-																<p class="word3">查看商品&gt;&gt;</p>
-															</div>
-															<div class="stock">
-																<div class="xsqMask"></div>
-																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
-															</div>
-														</div>
-														<div class="title_new">
-															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
-														</div>
-														<div class="dealInfo">
-															<span class="price">¥<em>2</em></span>
-
-															<span class="shop_preferential">满2件8.8折</span>
-														</div>
-													</a>
-												</div>
-												<div class="xsq_deal_wrapper">
-													<a class="saleDeal" href="" target="_blank">
-														<div class="dealCon">
-															<img class="dealImg" src="/home/images/xlqg11.jpg" alt="">
-															<div class="zt2Qrcode overlay">
-																<div class="xsqMask"></div>
-																<p class="word1">15:00开抢</p>
-																<p class="word2">限100件，抢完恢复25.8元</p>
-																<p class="word3">查看商品&gt;&gt;</p>
-															</div>
-															<div class="stock">
-																<div class="xsqMask"></div>
-																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
-															</div>
-														</div>
-														<div class="title_new">
-															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
-														</div>
-														<div class="dealInfo">
-															<span class="price">¥<em>2</em></span>
-
-															<span class="shop_preferential">满2件8.8折</span>
-														</div>
-													</a>
-												</div>
-												<div class="xsq_deal_wrapper">
-													<a class="saleDeal" href="" target="_blank">
-														<div class="dealCon">
-															<img class="dealImg" src="/home/images/xlqg12.jpg" alt="">
-															<div class="zt2Qrcode overlay">
-																<div class="xsqMask"></div>
-																<p class="word1">15:00开抢</p>
-																<p class="word2">限100件，抢完恢复25.8元</p>
-																<p class="word3">查看商品&gt;&gt;</p>
-															</div>
-															<div class="stock">
-																<div class="xsqMask"></div>
-																<span class="stockWord"><i class="stocknumber">还剩73件</i> 抢完恢复原价16.8元</span>
-															</div>
-														</div>
-														<div class="title_new">
-															<p class="word" title="925银流苏珍珠耳坠耳钉"><span class="baoyouText">[包邮]</span>925银流苏珍珠耳坠耳钉</p>
-														</div>
-														<div class="dealInfo">
-															<span class="price">¥<em>2</em></span>
-
-															<span class="shop_preferential">满2件8.8折</span>
-														</div>
-													</a>
-												</div>
-											</li>
+												
+											@endforeach
+										</li>
 										</ul>
-										<a href="javascript:;" class="zuo trigger"></a>
-										<a href="javascript:;" class="you trigger"></a>
 									</div>
 								</div>
 							</div>
@@ -967,276 +260,50 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>@php 
+			use App\Models\Goods;
+			@endphp
+	@foreach ($huodong as $k=>$v)
 	<div class="center pc-top-20">
 		<div class="pc-center-he">
 			<div class="pc-box-he pc-box-blue clearfix">
-				<div class="fl"><i class="pc-time-icon"></i></div>
+				<div class="fl"><span style="font-size:20;color:#fff;">活动商品</span></div>
 				<div class="fr pc-box-blue-link">
-					<a href="#">上衣</a>
-					<a href="#">短裙</a>
-					<a href="#">牛仔裤</a>
-					<a href="#">短袖</a>
-					<a href="#">帽子</a>
+					<a href="#">{{$v->zhekou }}折商品</a>					
 				</div>
 			</div>
 			<div class="pc-list-goods">
 				<div class="xsq_deal_wrapper pc-deal-list clearfix">
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg13.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
-						<div class="dealInfo"><span class="price">¥<em>39.9</em></span></div>
+					@php $goods = Goods::where('pid',$v->id)->paginate(6);@endphp
+
+					@foreach($goods as $kk=>$vv)
+					<a class="saleDeal" href="/home/page/{{ $vv->id }}" target="_self">
+						<div class="dealCon"><img class="dealImg" src="/uploads/{{ $vv->url }}" alt=""></div>
+						<div class="title_new"><p class="word" title="{{ $vv->gdescr }}"><span class="baoyouText"></span>{{ $vv->gname }}</p></div>
+						<div class="dealInfo"><span class="price">¥<em>{{ $vv->gprice }}</em></span>{{ $v->zhekou }}折</div>
 					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg14.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池"><span class="baoyouText">[包邮]</span>神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池</p></div>
-						<div class="dealInfo"><span class="price">¥<em>99.0</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg15.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
-						<div class="dealInfo"><span class="price">¥<em>99.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg16.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="暖风机家用取暖器婴儿电暖气暖手宝浴室防水N"><span class="baoyouText">[包邮]</span>暖风机家用取暖器婴儿电暖气暖手宝浴室防水N</p></div>
-						<div class="dealInfo"><span class="price">¥<em>199.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg17.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具"><span class="baoyouText">[包邮]</span>CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具</p></div>
-						<div class="dealInfo"><span class="price">¥<em>29.0</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg18.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 "><span class="baoyouText">[包邮]</span>联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 </p></div>
-						<div class="dealInfo"><span class="price">¥<em>4499.9</em></span></div>
-					</a>
+					@endforeach
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="center pc-top-20">
-		<div class="pc-center-he">
-			<div class="pc-box-he pc-box-ge clearfix">
-				<div class="fl"><i class="pc-time-icon"></i></div>
-				<div class="fr pc-box-blue-link">
-					<a href="#">上衣</a>
-					<a href="#">短裙</a>
-					<a href="#">牛仔裤</a>
-					<a href="#">短袖</a>
-					<a href="#">帽子</a>
-				</div>
-			</div>
-			<div class="pc-list-goods">
-				<div class="xsq_deal_wrapper pc-deal-list clearfix">
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg13.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
-						<div class="dealInfo"><span class="price">¥<em>39.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg14.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池"><span class="baoyouText">[包邮]</span>神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池</p></div>
-						<div class="dealInfo"><span class="price">¥<em>99.0</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg15.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
-						<div class="dealInfo"><span class="price">¥<em>99.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg16.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="暖风机家用取暖器婴儿电暖气暖手宝浴室防水N"><span class="baoyouText">[包邮]</span>暖风机家用取暖器婴儿电暖气暖手宝浴室防水N</p></div>
-						<div class="dealInfo"><span class="price">¥<em>199.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg17.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具"><span class="baoyouText">[包邮]</span>CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具</p></div>
-						<div class="dealInfo"><span class="price">¥<em>29.0</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg18.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 "><span class="baoyouText">[包邮]</span>联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 </p></div>
-						<div class="dealInfo"><span class="price">¥<em>4499.9</em></span></div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="center pc-top-20">
-		<div class="pc-center-he">
-			<div class="pc-box-he pc-box-re clearfix">
-				<div class="fl"><i class="pc-time-icon"></i></div>
-				<div class="fr pc-box-blue-link">
-					<a href="#">上衣</a>
-					<a href="#">短裙</a>
-					<a href="#">牛仔裤</a>
-					<a href="#">短袖</a>
-					<a href="#">帽子</a>
-				</div>
-			</div>
-			<div class="pc-list-goods">
-				<div class="xsq_deal_wrapper pc-deal-list clearfix">
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg13.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
-						<div class="dealInfo"><span class="price">¥<em>39.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg14.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池"><span class="baoyouText">[包邮]</span>神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池</p></div>
-						<div class="dealInfo"><span class="price">¥<em>99.0</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg15.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
-						<div class="dealInfo"><span class="price">¥<em>99.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg16.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="暖风机家用取暖器婴儿电暖气暖手宝浴室防水N"><span class="baoyouText">[包邮]</span>暖风机家用取暖器婴儿电暖气暖手宝浴室防水N</p></div>
-						<div class="dealInfo"><span class="price">¥<em>199.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg17.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具"><span class="baoyouText">[包邮]</span>CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具</p></div>
-						<div class="dealInfo"><span class="price">¥<em>29.0</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg18.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 "><span class="baoyouText">[包邮]</span>联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 </p></div>
-						<div class="dealInfo"><span class="price">¥<em>4499.9</em></span></div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="center pc-top-20">
-		<div class="pc-center-he">
-			<div class="pc-box-he pc-box-qr clearfix">
-				<div class="fl"><i class="pc-time-icon"></i></div>
-				<div class="fr pc-box-blue-link">
-					<a href="#">上衣</a>
-					<a href="#">短裙</a>
-					<a href="#">牛仔裤</a>
-					<a href="#">短袖</a>
-					<a href="#">帽子</a>
-				</div>
-			</div>
-			<div class="pc-list-goods">
-				<div class="xsq_deal_wrapper pc-deal-list clearfix">
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg13.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
-						<div class="dealInfo"><span class="price">¥<em>39.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg14.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池"><span class="baoyouText">[包邮]</span>神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池</p></div>
-						<div class="dealInfo"><span class="price">¥<em>99.0</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg15.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
-						<div class="dealInfo"><span class="price">¥<em>99.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg16.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="暖风机家用取暖器婴儿电暖气暖手宝浴室防水N"><span class="baoyouText">[包邮]</span>暖风机家用取暖器婴儿电暖气暖手宝浴室防水N</p></div>
-						<div class="dealInfo"><span class="price">¥<em>199.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg17.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具"><span class="baoyouText">[包邮]</span>CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具</p></div>
-						<div class="dealInfo"><span class="price">¥<em>29.0</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg18.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 "><span class="baoyouText">[包邮]</span>联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 </p></div>
-						<div class="dealInfo"><span class="price">¥<em>4499.9</em></span></div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+	@endforeach
+	
 	<div class="center pc-top-20">
 		<div class="pc-center-he">
 			<div class="pc-box-he pc-box-ue clearfix">
-				<div class="fl"><i class="pc-time-icon"></i></div>
-				<div class="fr pc-box-blue-link">
-					<a href="#">上衣</a>
-					<a href="#">短裙</a>
-					<a href="#">牛仔裤</a>
-					<a href="#">短袖</a>
-					<a href="#">帽子</a>
-				</div>
+				<div class="fl"><span style="font-size:20;color:#fff;">猜你喜欢</span></div>
+				
 			</div>
 			<div class="pc-list-goods" style="height:auto">
-				<div class="xsq_deal_wrapper pc-deal-list clearfix">
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg19.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
-						<div class="dealInfo"><span class="price">¥<em>39.9</em></span></div>
+				
+					@foreach($goodss as $k=>$v)
+					<a class="saleDeal" href="/home/page/{{ $v->id }}" target="_self">
+						<div class="dealCon"><img class="dealImg" src="/uploads/{{ $v->url }}" alt=""></div>
+						<div class="title_new"><p class="word" title="{{ $v->gdescr }}"><span class="baoyouText">[包邮]</span>{{ $v->gname }}</p></div>
+						<div class="dealInfo"><span class="price">¥<em>{{ $v->gprice }}</em></span></div>
 					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg14.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池"><span class="baoyouText">[包邮]</span>神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池</p></div>
-						<div class="dealInfo"><span class="price">¥<em>99.0</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg15.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
-						<div class="dealInfo"><span class="price">¥<em>99.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg16.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="暖风机家用取暖器婴儿电暖气暖手宝浴室防水N"><span class="baoyouText">[包邮]</span>暖风机家用取暖器婴儿电暖气暖手宝浴室防水N</p></div>
-						<div class="dealInfo"><span class="price">¥<em>199.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg17.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具"><span class="baoyouText">[包邮]</span>CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具</p></div>
-						<div class="dealInfo"><span class="price">¥<em>29.0</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg18.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 "><span class="baoyouText">[包邮]</span>联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 </p></div>
-						<div class="dealInfo"><span class="price">¥<em>4499.9</em></span></div>
-					</a>
-				</div>
-				<div class="xsq_deal_wrapper pc-deal-list clearfix" >
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg13.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
-						<div class="dealInfo"><span class="price">¥<em>39.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg14.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池"><span class="baoyouText">[包邮]</span>神火（supfire）C8T6 强光手电筒 远射LED充电式防身灯 配18650电池</p></div>
-						<div class="dealInfo"><span class="price">¥<em>99.0</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg15.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品"><span class="baoyouText">[包邮]</span>【京东超市】福临门 葵花籽原香食用调和油5L 中粮出品</p></div>
-						<div class="dealInfo"><span class="price">¥<em>99.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg16.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="暖风机家用取暖器婴儿电暖气暖手宝浴室防水N"><span class="baoyouText">[包邮]</span>暖风机家用取暖器婴儿电暖气暖手宝浴室防水N</p></div>
-						<div class="dealInfo"><span class="price">¥<em>199.9</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg17.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具"><span class="baoyouText">[包邮]</span>CIKOO 洗澡玩具 戏水玩具 水枪玩具 高压水枪玩具</p></div>
-						<div class="dealInfo"><span class="price">¥<em>29.0</em></span></div>
-					</a>
-					<a class="saleDeal" href="" target="_blank">
-						<div class="dealCon"><img class="dealImg" src="/home/images/xlqg18.jpg" alt=""></div>
-						<div class="title_new"><p class="word" title="联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 "><span class="baoyouText">[包邮]</span>联想（ThinkPad）轻薄系列E470c（20H3A004CD）14英寸笔记本电脑（i5-6200U 8G 500G 2G独显 Win10）黑色 </p></div>
-						<div class="dealInfo"><span class="price">¥<em>4499.9</em></span></div>
-					</a>
-				</div>
+					@endforeach
 			</div>
 		</div>
 	</div>

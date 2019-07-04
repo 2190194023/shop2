@@ -1,5 +1,6 @@
 @extends('admin.public.index')
 
+<<<<<<< HEAD
 
 @section('content')
     <div class="mws-panel grid_8">
@@ -112,5 +113,4 @@
             </div>
         </div>
     </div>
-
 @endsection

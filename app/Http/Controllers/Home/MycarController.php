@@ -8,6 +8,7 @@ use App\Models\Mycar;
 use App\Models\Cates;
 use App\Models\Goods;
 use App\Models\Users;
+use App\Models\Link;
 
 class MycarController extends Controller
 {
@@ -37,8 +38,11 @@ class MycarController extends Controller
         $goods = Goods::get();
         $num = $goods->count();
 
+        //查询所有友情链接
+        $link = Link::where('status',1)->get();
+
         // 视图
-        return view('home.mycar.index',['cate_data'=>$cate_data,'mycar'=>$mycar,'num'=>$num,'user'=>$user,'mycarnum'=>$mycarnum]);
+        return view('home.mycar.index',['cate_data'=>$cate_data,'mycar'=>$mycar,'num'=>$num,'user'=>$user,'mycarnum'=>$mycarnum,'link'=>$link]);
     }
 
     /**

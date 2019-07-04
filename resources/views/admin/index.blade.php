@@ -63,7 +63,7 @@
 </div>
     <CENTER>
     <div>Copyright Your Website 2012. All Rights Reserved.</div>
-    <div>开发者ODX.69c.shop</div>
+    <div>开发者 zyc  caolei  panpan</div>
     <div>Copyright Your Website 19201. All Rights Reserved.</div>
     <div>GANXIE</div>
 @endsection

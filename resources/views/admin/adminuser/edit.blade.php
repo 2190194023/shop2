@@ -82,6 +82,7 @@
 	            </div>
 	            <div class="mws-button-row">
 	                <input type="submit" value="修改" class="btn btn-info">               
+
 	            </div>
 	        </form>
 	    </div>   	

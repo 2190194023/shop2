@@ -1,8 +1,9 @@
 @extends('home.public.header')
 
+
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript">
-		
+
         $(document).ready(function(){
             var $miaobian=$('.Xcontent08>div');
             var $huantu=$('.Xcontent06>img');
@@ -56,6 +57,7 @@
     	var $num = $(".input").val();
     	$alk = $alink+'/'+$num;
     	$("#ak").attr("href",$alk);
+
         })
 	</script>
 	<style>
@@ -63,7 +65,6 @@
 			width:200px;
 		}
 	</style>
-
 </head>
 <body>
 
@@ -234,6 +235,7 @@
 			</ul>
 		</div>
 	</div>
+
 </div>
 <div class="containers center clearfix" style="margin-top:20px; background:#fff;">
 	<div style="padding-left:10px; padding-top:20px2">

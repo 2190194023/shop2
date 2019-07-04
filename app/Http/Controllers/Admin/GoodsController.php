@@ -76,6 +76,7 @@ class GoodsController extends Controller
         if($tid == 0){
             return back()->with('error','请选择商品类别');
         }
+
     	$this->validate($request,[
     		'gname' => 'required',
     		'gcompany' => 'required',

@@ -17,6 +17,7 @@
 	<script type="text/javascript" src="/home/js/index.js"></script>
     <script type="text/javascript" src="/home/js/modernizr-custom-v2.7.1.min.js"></script>
     <script type="text/javascript" src="/home/js/jquery.SuperSlide.js"></script>
+
 	<script type="text/javascript">
 
         var intDiff = parseInt(90000);//倒计时总秒数量

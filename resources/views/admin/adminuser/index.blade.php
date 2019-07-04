@@ -1,5 +1,6 @@
 @extends('admin.public.index')
 
+
 @section('content')
 	<div class="mws-panel grid_8">
     	<div class="mws-panel-header">
@@ -58,7 +59,6 @@
 		            </tbody>
 
 	        	</table>
-
 	        	<div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
            			{{ $adminuser->appends($params)->links() }}
         		</div>

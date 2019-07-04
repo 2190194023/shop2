@@ -8,6 +8,7 @@ use App\Models\Cates;
 use App\Models\Users;
 use App\Models\Address;
 use App\Models\Mycar;
+use App\Models\Link;
 use Illuminate\Support\Facades\Storage;
 use DB;
 use Hash;
@@ -30,8 +31,9 @@ class GerenController extends Controller
 
     	// 列表页 
         $cate_data = Cates::where('pid',0)->paginate(7);
-
-    	return view('home.geren.index',['cate_data'=>$cate_data,'user'=>$user,'mycarnum'=>$mycarnum]);
+        //查询所有友情链接
+        $link = Link::where('status',1)->get();
+    	return view('home.geren.index',['cate_data'=>$cate_data,'user'=>$user,'mycarnum'=>$mycarnum,'link'=>$link]);
     }
 
     // 修改个人信息
@@ -47,8 +49,11 @@ class GerenController extends Controller
 
         $mycarnum = $mycar->count();
 
+        //查询所有友情链接
+        $link = Link::where('status',1)->get();
+
         // 加载修改页面
-        return view('home.geren.edit',['cate_data'=>$cate_data,'user'=>$user,'mycarnum'=>$mycarnum]);  
+        return view('home.geren.edit',['cate_data'=>$cate_data,'user'=>$user,'mycarnum'=>$mycarnum,'link'=>$link]);  
     }
 
     // 执行修改个人信息
@@ -87,9 +92,11 @@ class GerenController extends Controller
 
         // 列表页 
         $cate_data = Cates::where('pid',0)->paginate(7);
+        //查询所有友情链接
+        $link = Link::where('status',1)->get();
 
         // 加载修改页面
-        return view('home.geren.pass',['cate_data'=>$cate_data,'user'=>$user,'mycarnum'=>$mycarnum]);  
+        return view('home.geren.pass',['cate_data'=>$cate_data,'user'=>$user,'mycarnum'=>$mycarnum,'link'=>$link]);  
     }
 
     // 执行修改密码
@@ -150,8 +157,11 @@ class GerenController extends Controller
         // 列表页 
         $cate_data = Cates::where('pid',0)->paginate(7);
 
+        //查询所有友情链接
+        $link = Link::where('status',1)->get();
+
         // 加载修改页面
-        return view('home.geren.ress',['cate_data'=>$cate_data,'ress'=>$ress,'user'=>$user,'mycarnum'=>$mycarnum]);
+        return view('home.geren.ress',['cate_data'=>$cate_data,'ress'=>$ress,'user'=>$user,'mycarnum'=>$mycarnum,'link'=>$link]);
     }
 
     // 添加地址
@@ -170,8 +180,11 @@ class GerenController extends Controller
         // 列表页 
         $cate_data = Cates::where('pid',0)->paginate(7);
 
+        //查询所有友情链接
+        $link = Link::where('status',1)->get();
+
         // 加载修改页面
-        return view('home.geren.ressjia',['cate_data'=>$cate_data,'ress'=>$ress,'user'=>$user,'mycarnum'=>$mycarnum]);
+        return view('home.geren.ressjia',['cate_data'=>$cate_data,'ress'=>$ress,'user'=>$user,'mycarnum'=>$mycarnum,'link'=>$link]);
     }
     // 执行添加地址
     public function doressjia(Request $request)
@@ -218,7 +231,10 @@ class GerenController extends Controller
         // 获取 购物车 数量
         $mycarnum = $mycar->count();
 
-        return view('home.geren.moren',['cate_data'=>$cate_data,'user'=>$user,'address'=>$address,'mycarnum'=>$mycarnum]);
+        //查询所有友情链接
+        $link = Link::where('status',1)->get();
+
+        return view('home.geren.moren',['cate_data'=>$cate_data,'user'=>$user,'address'=>$address,'mycarnum'=>$mycarnum,'link'=>$link]);
     }
 
     // 执行修改 地址
