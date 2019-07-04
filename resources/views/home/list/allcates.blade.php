@@ -45,8 +45,9 @@
 			</h1>
 		</div>
 		<div class="head-form fl">
-			<form class="clearfix">
-				<input class="search-text" accesskey="" id="key" autocomplete="off" placeholder="洗衣机" type="text">
+			<form class="clearfix" action="/home/list/001" method="get">
+				{{ csrf_field() }}
+				<input class="search-text" style="height:36px;" name="search" id="key" autocomplete="off" placeholder="洗衣机" type="text">
 				<button class="button" onclick="search('key');return false;">搜索</button>
 			</form>
 			<div class="words-text clearfix">

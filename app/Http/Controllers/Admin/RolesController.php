@@ -18,8 +18,11 @@ class RolesController extends Controller
             'UsersController'=>'用户管理',
             'RolesController'=>'角色管理',
             'NodesController'=>'权限管理',
-            'NodesController'=>'权限管理',
+            'OrderController'=>'订单管理',
             'CatesController'=>'分类管理',
+            'GoodsController'=>'商品管理',
+            'GoodsimgController'=>'商品图片管理',
+            'DiscussController'=>'评论管理',
         ];
     }
     /**

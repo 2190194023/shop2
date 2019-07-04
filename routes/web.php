@@ -24,6 +24,21 @@ Route::resource('home/list','Home\ListController');
 // 路由: 前台商品详情
 Route::resource('home/page','Home\PageController');
 
+// 路由: 前台购物车
+Route::resource('home/mycar','Home\MycarController');
+Route::get('home/mycar/{id}/{num}','Home\MycarController@show');
+
+// 路由: 前台订单
+Route::resource('home/order','Home\OrderController');
+// 路由: 前台订单状态修改
+Route::post('home/order/update','Home\OrderController@update');
+// 路由: 前台订单详情
+Route::get('home/order/detail/{id}','Home\OrderController@detail');
+
+
+
+
+
 
 // 路由: 后台登录
 Route::get('admin/login','Admin\LoginController@login');
@@ -113,6 +128,9 @@ Route::group(['middleware'=>['login','nodes']],function(){
 
 	//路由：后台活动管理
 	Route::resource('admin/dong','Admin\HuodongController');
+
+	// 路由: 后台商品
+	Route::resource('admin/goods','Admin\GoodsController');
 });
 
 

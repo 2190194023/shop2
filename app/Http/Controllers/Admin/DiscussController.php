@@ -117,7 +117,6 @@ class DiscussController extends Controller
         // 获取数据
         $id = $request->input('id','');
 
-
         // 执行删除
         $res = Discuss::find($id)->delete();
         // 判断

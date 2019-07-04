@@ -38,8 +38,6 @@
 		                    <td style="text-align: center;">{{ $v->id }}</td>
 		                    <td style="text-align: center;">{{ $v->rname }}</td>
 		                    <td style="text-align: center;">
-		                    	<a href="" class="btn btn-warning">角色</a>
-								<a href="" class="btn btn-info">修改</a>
 								<a href="/admin/roles/{{ $v->id }}/edit" class="btn btn-info">权限修改</a>
 								<form action="/admin/roles/{{ $v->id }}" method="post" style="display: inline-block;">
 									{{ csrf_field() }}

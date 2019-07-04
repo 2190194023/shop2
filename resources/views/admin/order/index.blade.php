@@ -48,7 +48,7 @@
                     <td>{{ $v->ototal }}</td>
                     <td>{{ $v->kdd }}</td>
                     <td style="width:150px;">
-                    		<a href="javascript:;" id="sta" token="{{ csrf_token() }}" onclick="member_stu(this,'{{ $v->id }}','{{ $v->ostatus }}')" class="btn btn-info">@if($v->ostatus == 0) 新订单 @elseif($v->ostatus == 1) 已发货 @elseif($v->ostatus == 2) 已收货 @elseif($v->ostatus == 3) 无效订单 @endif</a>
+                    		<a href="javascript:;" id="sta" token="{{ csrf_token() }}" onclick="member_stu(this,'{{ $v->id }}','{{ $v->ostatus }}')" class="btn btn-info">@if($v->ostatus == 0) 新订单 @elseif($v->ostatus == 1) 已发货 @elseif($v->ostatus == 2) 已收货 @elseif($v->ostatus == 3) 已退货 @endif</a>
                     </td>
                     <td style="width:230px;">
                       <a title="查看详情" class="btn btn-info" href="/admin/order/detail/{{ $v->oid }}">订单详情</a>

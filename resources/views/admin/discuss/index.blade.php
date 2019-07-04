@@ -14,8 +14,8 @@
                 <tr>
                     <th>id</th>
                     <th>用户名称</th>
-                    <th>商品</th>
-                    <th>评论内容</th>
+                    <th style='width:100px'>商品</th>
+                    <th style='width:700px'>评论内容</th>
                     <th>评论时间</th>
                     <th>编辑</th>
                 </tr>
@@ -30,7 +30,7 @@
 	                    <td>{{ $v->id }}</td>
 	                    <td>{{ $uname[$k] }}</td>
 	                    <td><img src="/uploads/{{ $goodimg }}" width="100px">{{ $goodname }}</td>
-	                    <td>{{ $v->content }}</td>
+	                    <td style="overflow: hidden;height:50px;">{!! $v->content !!}</td>
 	                    <td style="width:150px;">{{ $v->addtime }}</td>
 	                    <td style="width:230px;">
 			                <a title="删除" class="btn btn-danger" token="{{ csrf_token() }}" onclick="member_del(this,'{{ $v->id }}')" href="javascript:;">删除</a>

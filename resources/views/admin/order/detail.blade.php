@@ -13,6 +13,7 @@
                     <th>id</th>
                     <th>订单号</th>
                     <th>商品</th>
+                    <th>商品图片</th>
                     <th>单价</th>
                     <th>总价</th>
                     <th>订单时间</th>
@@ -23,7 +24,12 @@
                     <td>{{ $data->id }}</td>
                     <td>{{ $data->uid }}</td>
                     <!-- 商品 -->
-                    <td><a href="/admin/goods/detail/{{ $data->gid }}">{{ $data->money }}</a></td>
+                    @php 
+                        use App\Models\Goods;
+                        $v = Goods::where('id',$data->money)->first();
+                    @endphp
+                    <td>{{ $v->gname }}</td>
+                    <td><img src="/uploads/{{ $v->url }}" width="120px"></td>
                     <td>{{ $data->qian }}</td>
                     <td>{{ $data->hou }}</td>
                     <td>{{ $data->otime }}</td>

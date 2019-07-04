@@ -12,6 +12,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="/home/img/icon/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="/home/css/base.css">
 	<link rel="stylesheet" type="text/css" href="/home/css/home.css">
+    <link rel="stylesheet" type="text/css" href="/home/css/member.css">
 	<script type="text/javascript" src="/home/js/jquery.js"></script>
 	<script type="text/javascript" src="/home/js/index.js"></script>
     <script type="text/javascript" src="/home/js/modernizr-custom-v2.7.1.min.js"></script>
@@ -73,4 +74,5 @@
 
 	</script>
 </head>
+
 

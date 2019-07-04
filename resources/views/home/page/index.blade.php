@@ -1,6 +1,8 @@
 @extends('home.public.header')
+
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript">
+		
         $(document).ready(function(){
             var $miaobian=$('.Xcontent08>div');
             var $huantu=$('.Xcontent06>img');
@@ -24,19 +26,36 @@
                 thisMb1.style.borderColor = '#cd2426';
                 $huantu[0].src = thisMb1.children[0].src;
             }
+            var $alink = $('#ak').attr('href');
             $(".Xcontent33").click(function(){
-                var value=parseInt($('.input').val())+1;
-                $('.input').val(value);
+            	var $num = $(".input").val();
+            	if($num< {{ $goods['gtock'] }} ){
+					var value=parseInt($('.input').val())+1;
+		            $('.input').val(value);
+
+		            var $num = $(".input").val();
+			    	$alk = $alink+'/'+$num;
+			    	$("#ak").attr("href",$alk); 
+            	}
+               
             })
 
             $(".Xcontent32").click(function(){
-                var num = $(".input").val()
-                if(num>0){
-                    $(".input").val(num-1);
+                var $num = $(".input").val()
+                if($num>0){
+                    $(".input").val($num-1);
+
+                    var $num = $(".input").val();
+			    	$alk = $alink+'/'+$num;
+			    	$("#ak").attr("href",$alk);
                 }
 
-            })
+            })    
 
+    	var $alink = $('#ak').attr('href');
+    	var $num = $(".input").val();
+    	$alk = $alink+'/'+$num;
+    	$("#ak").attr("href",$alk);
         })
 	</script>
 	<style>
@@ -92,8 +111,9 @@
 			</h1>
 		</div>
 		<div class="head-form fl">
-			<form class="clearfix">
-				<input class="search-text" accesskey="" id="key" autocomplete="off" placeholder="洗衣机" type="text">
+			<form class="clearfix" action="/home/list/001" method="get">
+				{{ csrf_field() }}
+				<input class="search-text" style="height:36px;" name="search" id="key" autocomplete="off" placeholder="洗衣机" type="text">
 				<button class="button" onclick="search('key');return false;">搜索</button>
 			</form>
 			<div class="words-text clearfix">
@@ -146,6 +166,10 @@
 				<p class="Xcontent18">售价</p>
 				<p class="Xcontent19">￥<span>{{ $goods['gprice'] }}</span></p>
 				<div class="Xcontent20">
+					<p class="Xcontent21">库存</p>
+					<p class="Xcontent22">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $goods['gtock'] }}</p>
+				</div>
+				<div class="Xcontent23">
 					<p class="Xcontent24">服务</p>
 					<p class="Xcontent25">30天无忧退货&nbsp;&nbsp;&nbsp;&nbsp;       48小时快速退款 &nbsp;&nbsp;&nbsp;&nbsp;        满88元免邮</p>
 				</div>
@@ -158,12 +182,12 @@
 				<p class="Xcontent31">数量</p>
 				<div class="Xcontent32"><img src="/home/images/shangpinxiangqing/X15.png"></div>
 				<form>
-					<input class="input" value="1"></form>
+					<input class="input" name="num" value="1" disabled></form>
 				<div class="Xcontent33"><img src="/home/images/shangpinxiangqing/16.png"></div>
 
 			</div>
 			<div class="Xcontent34"><a href="#">立即购买</a></div>
-			<div class="Xcontent35"><a href="#">加入购物车</a></div>
+			<div class="Xcontent35"><a id="ak" href="/home/mycar/{{ $goods['id'] }}">加入购物车</a></div>
 
 		</ol>
 
@@ -198,387 +222,146 @@
 	</div>
 </div>
 <div class="containers center clearfix" style="margin-top:20px; background:#fff;">
-	<div class="fl" style="padding-left:10px; padding-top:20px">
-		<div class="menu_list" id="firstpane">
-			<h2>栏目分类</h2>
-			@foreach($cates_data as $k=>$v)
-			<h3 class="menu_head current"><a href="/home/list/{{ $v->id }}">{{ $v->cname }}</a></h3>
-			@endforeach
-		</div>
-	</div syu>
-	<div class="pc-info fr" style="padding-left:10px; padding-top:20px">
+	<div style="padding-left:10px; padding-top:20px2">
 		<div class="pc-overall">
 			<ul id="H-table1" class="brand-tab H-table1 H-table-shop clearfix ">
 				<li class="cur"><a href="javascript:void(0);">商品介绍</a></li>
-				<li><a href="javascript:void(0);">商品评价<em class="reds">(91)</em></a></li>
-				<li><a href="javascript:void(0);">售后保障</a></li>
+				<li><a href="#评价">商品评价<em class="reds">({{ $num }})</em></a></li>
 			</ul>
 			<div class="pc-term clearfix">
 				<div class="H-over1 pc-text-word clearfix">
-					<ul class="clearfix">
-						<li>
-							<p>屏幕尺寸：4.8英寸</p>
-							<p>分辨率：1280×720(HD,720P) </p>
-						</li>
-						<li>
-							<p>后置摄像头：800万像素</p>
-							<p>分辨率：1280×720(HD,720P) </p>
-						</li>
-						<li>
-							<p>前置摄像头：190万像素</p>
-							<p>分辨率：1280×720(HD,720P) </p>
-						</li>
-						<li>
-							<p>3G：电信(CDMA2000)</p>
-							<p>2G：移动/联通(GSM)/电信(CDMA </p>
-						</li>
-					</ul>
-					<div class="pc-line"></div>
-					<ul class="clearfix">
-						<li>
-							<p>商品名称：三星I939I</p>
-							<p>商品毛重：360.00g </p>
-						</li>
-						<li>
-							<p>商品编号：1089266</p>
-							<p>商品产地：中国大陆</p>
-						</li>
-						<li>
-							<p>品牌： 三星（SAMSUNG）</p>
-							<p>系统：安卓（Android </p>
-						</li>
-						<li>
-							<p>上架时间：2015-03-30 09:07:18</p>
-							<p>机身颜色：白色</p>
-						</li>
-					</ul>
 					<div>
-						<div style="text-align:center"><img src="images/shangpinxiangqing/X1.png" width="50%"></div>
-						<div style="text-align:center"><img src="images/shangpinxiangqing/X2.png" width="50%"></div>
-						<div style="text-align:center"><img src="images/shangpinxiangqing/X3.png" width="50%"></div>
-						<div style="text-align:center"><img src="images/shangpinxiangqing/X1.png" width="50%"></div>
+						@foreach($gimg as $k=>$v)
+						<div style="text-align:center"><img src="/uploads/{{ $v->lujing }}" width="50%"></div>
+						@endforeach
 					</div>
-				</div>
-				<div class="H-over1" style="display:none">
-					<div class="pc-comment fl"><strong>86<span>%</span></strong><br> <span>好评度</span></div>
-					<div class="pc-percent fl">
-						<dl>
-							<dt>好评<span>(86%)</span></dt>
-							<dd><div style="width:86px"></div></dd>
-						</dl>
-						<dl>
-							<dt>中评<span>(86%)</span></dt>
-							<dd><div style="width:86px"></div></dd>
-						</dl>
-						<dl>
-							<dt>好评<span>(86%)</span></dt>
-							<dd><div style="width:86px"></div></dd>
-						</dl>
-					</div>
-				</div>
-				<div class="H-over1 pc-text-title" style="display:none">
-					<p>本产品全国联保，享受三包服务，质保期为：一年质保
-						如因质量问题或故障，凭厂商维修中心或特约维修点的质量检测证明，享受7日内退货，15日内换货，15日以上在质保期内享受免费保修等三包服务！
-						(注:如厂家在商品介绍中有售后保障的说明,则此商品按照厂家说明执行售后保障服务。) 您可以查询本品牌在各地售后服务中心的联系方式，请点击这儿查询......</p>
-					<div class="pc-line"></div>
 				</div>
 			</div>
 		</div>
 		<div class="pc-overall">
 			<ul class="brand-tab H-table H-table-shop clearfix " id="H-table" style="margin-left:0;">
 				<li class="cur"><a href="javascript:void(0);">全部评价（199）</a></li>
-				<li><a href="javascript:void(0);">好评<em class="reds">（33）</em></a></li>
-				<li><a href="javascript:void(0);">中评<em class="reds">（02）</em></a></li>
-				<li><a href="javascript:void(0);">差评<em class="reds">（01）</em></a></li>
 			</ul>
 			<div class="pc-term clearfix">
 				<div class="pc-column">
 					<span class="column1">评价心得</span>
-					<span class="column2">顾客满意度</span>
+					<span class="column2">评论时间</span>
 					<span class="column3">购买信息</span>
 					<span class="column4">评论者</span>
+					<span class="column4">购买时间</span>
 				</div>
 				<div class="H-over  pc-comments clearfix">
+					<a name="评价"></a>
 					<ul class="clearfix">
+						@php 
+                    		use App\Models\Users
+                    	@endphp
+						@foreach($discuss_data as $k=>$v)
 						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
+							<div class="column1" style="height:100px;width:480px;">
+								<p>{!! $v->content !!}</p>
 							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
+							<div class="column2">{{ $v->addtime }}</div>
+							<div class="column3"><img src="/uploads/{{ $goods->url }}" width="120px"></div>
 							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
+								<p style="line-height: 30px;margin:23px;">
+									@php
+									$x = Users::where('id',$v->uid)->first();
+									echo $x->uname;
+									@endphp
+								</p>
 							</div>
+							<div>{{ $v->otime }}</div>
 						</li>
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div style="display:none" class="H-over pc-comments">
-					<ul class="clearfix">
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div style="display:none" class="H-over pc-comments">
-					<ul class="clearfix">
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div style="display:none" class="H-over pc-comments">
-					<ul class="clearfix">
-						<li class="clearfix">
-							<div class="column1">
-								<p class="clearfix"><a href="#">回复<em>（90）</em></a> <a href="#">赞<em>（90）</em></a> </p>
-								<p>一次用三星，不是很顺手，但咨询客服后终于上手了，感觉性价比相当不错，值得购买。但最想说的是京东客服更好，产品信得过，正品行货，买的放心。</p>
-								<p class="column5">2014-11-25 14:32</p>
-							</div>
-							<div class="column2"><img src="img/icon/star.png"></div>
-							<div class="column3">颜色：云石白</div>
-							<div class="column4">
-								<p><img src="img/icon/user.png"></p>
-								<p>2014-11-23 22:37 购买</p>
-							</div>
-						</li>
+						@endforeach
 					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="clearfix">
-			<div class="fr pc-search-g pc-search-gs">
-				<a href="#" class="fl " style="display:none">上一页</a>
-				<a class="current" href="#">1</a>
-				<a href="javascript:;">2</a>
-				<a href="javascript:;">3</a>
-				<a href="javascript:;">4</a>
-				<a href="javascript:;">5</a>
-				<a href="javascript:;">6</a>
-				<a href="javascript:;">7</a>
-				<span class="pc-search-di">…</span>
-				<a href="javascript:;">1088</a>
-				<a href="javascript:;" class="" title="使用方向键右键也可翻到下一页哦！">下一页</a>
+		<div style="padding-top:30px;">
+				<div class="member-pages clearfix">
+					<div class="pull-right">
+				            <!-- 显示页码 -->
+				            {{ $discuss_data->links() }}
+				    </div>
+				</div>
 			</div>
-		</div>
 	</div>
 </div>
 <div style="height:100px"></div>
+<div style="height:100px"></div>
+<style type="text/css">
+        #pull_right{
+            text-align:center;
+        }
+        .pull-right {
+            float: right!important;
+        }
+        .pagination {
+            display: inline-block;
+            padding-left: 0;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .pagination > li {
+            display: inline;
+        }
+        .pagination > li > a,
+        .pagination > li > span {
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            color: #428bca;
+            text-decoration: none;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+        .pagination > li:first-child > a,
+        .pagination > li:first-child > span {
+            margin-left: 0;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+        .pagination > li:last-child > a,
+        .pagination > li:last-child > span {
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        .pagination > li > a:hover,
+        .pagination > li > span:hover,
+        .pagination > li > a:focus,
+        .pagination > li > span:focus {
+            color: #2a6496;
+            background-color: #eee;
+            border-color: #ddd;
+        }
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            z-index: 2;
+            color: #fff;
+            cursor: default;
+            background-color: #428bca;
+            border-color: #428bca;
+        }
+        .pagination > .disabled > span,
+        .pagination > .disabled > span:hover,
+        .pagination > .disabled > span:focus,
+        .pagination > .disabled > a,
+        .pagination > .disabled > a:hover,
+        .pagination > .disabled > a:focus {
+            color: #777;
+            cursor: not-allowed;
+            background-color: #fff;
+            border-color: #ddd;
+        }
+        .clear{
+            clear: both;
+        }
+    </style>
 @extends('home.public.footer')

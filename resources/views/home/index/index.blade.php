@@ -1,4 +1,5 @@
 @extends('home.public.header')
+
 <body>
 
 <header id="pc-header">
@@ -45,8 +46,9 @@
 			</h1>
 		</div>
 		<div class="head-form fl">
-			<form class="clearfix">
-				<input class="search-text" accesskey="" id="key" autocomplete="off" placeholder="洗衣机" type="text">
+			<form class="clearfix" action="/home/list/001" method="get">
+				{{ csrf_field() }}
+				<input class="search-text" style="height:36px;" name="search" id="key" autocomplete="off" placeholder="洗衣机" type="text">
 				<button class="button" onclick="search('key');return false;">搜索</button>
 			</form>
 			<div class="words-text clearfix">
@@ -75,7 +77,7 @@
 				<h2 class="pullDownTitle"><i class="icon-class"></i>所有商品分类</h2>
 				<ul class="pullDownList">
 					<li class="">
-						<i class="list-icon-1"></i>
+						<i class="list-icon-2"></i>
 						<a href="" target="_blank">手机</a>
 						/<a href="" target="_blank">数码</a>
 						/<a href="" target="_blank">电脑办公</a>

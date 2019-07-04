@@ -21,13 +21,7 @@ class ListController extends Controller
         $cate_data = Cates::where('pid',0)->paginate(7);
 
         // 获取 所有栏目名称 50条 一页
-        $cate_res = Cates::select('*',DB::raw("concat(path,',',id) as paths"))->orderBy('paths','asc')->paginate(50);
-
-         foreach ($cate_res as $key => $value){
-            $n = substr_count($value->path,',');
-
-            $cate_res[$key]->cname = str_repeat('|----',$n).$value->cname;
-         }
+        $cate_res = Cates::paginate(50);
         // 视图
         return view('home.list.allcates',['cate_data'=>$cate_data,'cate_res'=>$cate_res]);
     }
@@ -59,8 +53,9 @@ class ListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
+
         // 获取本栏目名称
         $cname = Cates::where('id',$id)->first(['cname']);
         // 列表页 
@@ -69,7 +64,18 @@ class ListController extends Controller
         // 获取 所有 栏目名称 15条
         $cate_res = Cates::paginate(15);
         // 获取 此栏目下商品数据 24条
-        $goods_data = Goods::where('tid',$id)->paginate(24);
+        if($id == 000){
+            $goods_data = Goods::paginate(24);
+        }else if($id == 001){
+            // 
+            $search = $request->input('search','');
+            $goods_data = Goods::where('gname','like','%'.$search.'%')->paginate(24);
+            $cname->cname = '相似搜索商品';
+        }else{
+            $goods_data = Goods::where('tid',$id)->paginate(24);
+        }
+        
+
         // 视图
         return view('home.list.index',['cate_data'=>$cate_data,'goods_data'=>$goods_data,'cname'=>$cname,'cate_res'=>$cate_res]);
     }
