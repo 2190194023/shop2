@@ -60,13 +60,13 @@ class AdminuserController extends Controller
         $email = $request->input('email','');
         $rid = $request->input('rid','');
 
+
         // 上传头像
         if($request->hasFile('profile')){
             $file_path = $request->file('profile')->store(date('Ymd'));
         }else{
             $file_path = '';
         }
-
 
         $temp['uname'] = $uname;
         $temp['password'] = Hash::make($password);
@@ -108,6 +108,7 @@ class AdminuserController extends Controller
     {
         // 获取数据库信息
         $adminuser = Adminuser::find($id);
+
         // 获取所有角色
         $roles_data = DB::table('roles')->get();
 
@@ -125,23 +126,12 @@ class AdminuserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 获取头像
-        if ($request->hasFile('profile')) {
-
-            // 删除以前旧的图片
-            Storage::delete($request->input('old_profile'));
-
-            $file_path = $request->file('profile')->store(date('Ymd'));
-        }else{
-            $file_path = $request->input('old_profile');
-        }
 
         $rid = $request->input('rid','');
 
         $adminuser = Adminuser::find($id);
         $adminuser->phone = $request->input('phone','');
         $adminuser->email = $request->input('email','');
-        $adminuser->profile = $file_path;
 
         $uid = $adminuser->save();
         $res = DB::table('adminusers_roles')->update(['uid'=>$uid,'rid'=>$rid]);

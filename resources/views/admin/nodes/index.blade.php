@@ -1,30 +1,5 @@
 @extends('admin.public.index')
 
-@section('css')
-	<style type="text/css">
-		.page_page ul,.page_page li{
-			margin: 0;
-			padding: 0;
-			list-style-type: none;
-		}
-		.page_page ul,.page_page li{
-		    position: relative;
-		    float: left;
-		    padding: 6px 12px;
-		    margin-left: -1px;
-		    line-height: 1.42857143;
-		    color: #444444;
-		    text-decoration: none;
-		    background-color: #444444;
-		}
-		.page_page .active{
-			background: green;
-			color: #fff;
-		}
-		
-	</style>
-@endsection
-
 @section('content')
 	<div class="mws-panel grid_8">
     	<div class="mws-panel-header">
@@ -33,17 +8,13 @@
         <div class="mws-panel-body no-padding">
             <div id="DataTables_Table_1_wrapper" class="dataTables_wrapper" role="grid">
             	<div class="dataTables_filter" id="DataTables_Table_1_filter">
-            		<form action="/admin/adminuser" method="get">
+            		<form action="/admin/nodes" method="get">
 	            		<label>
-	            			用户名 : 
-	            			<input type="text" name="search_uname" value="">
+	            			<input type="text" name="search_uname" placeholder="权限名" value="{{ $params['search_uname'] or '' }}"">
 	            		</label>
+	       
 	            		<label>
-	            			邮箱 : 
-	            			<input type="text" name="search_email" value="">
-	            		</label>
-	            		<label>
-							<input type="submit"  class="btn btn-info">
+							<input type="submit" value="搜索"  class="btn btn-success">
 	            		</label>
             		</form>
             	</div>
@@ -68,11 +39,6 @@
 		                    <td style="text-align: center;">{{ $v->aname }}</td>
 
 		                    <td style="text-align: center;">
-								<a href="" class="btn btn-info">修改</a>
-								<form action="" method="post" style="display: inline-block;">
-									
-									<input type="submit" value="删除" class="btn btn-success">
-								</form>
 								<a href="/admin/nodes/{{ $v->id }}/edit" class="btn btn-info">修改权限</a>
 		                    </td>
 		                </tr>
@@ -81,13 +47,44 @@
 
 	        	</table>
 
-	            <div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-	            	
-	            	<div class="page_page">
-						
-	            	</div>
-	            </div>
-        	</div>
+	           	<div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
+           			{{ $data->appends($params)->links() }}
+        		</div>
+
+        		<style>
+			        .pagination{
+			            margin:0px;
+			        }
+			        .pagination li{
+			            float: left;
+			            height: 20px;
+			            padding: 0 10px;
+			            display: block;
+			            font-size: 12px;
+			            line-height: 20px;
+			            text-align: center;
+			            cursor: pointer;
+			            outline: none;
+			            background-color: #444444;
+			           
+			            text-decoration: none;
+			            border-right: 1px solid rgba(0, 0, 0, 0.5);
+			            border-left: 1px solid rgba(255, 255, 255, 0.15);
+			            box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5), inset 0px 1px 0px rgba(255, 255, 255, 0.15);
+			        }
+			        .pagination a{
+			             color: #fff;
+			        }
+			        .pagination .active{
+			            
+			            color: #323232;
+			            border: none;
+			            background-image: none;
+			            box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
+			            background-color: #f08dcc;
+			        }
+
+				</style>
         </div>
     </div>
 @endsection

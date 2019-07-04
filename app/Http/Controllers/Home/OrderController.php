@@ -26,17 +26,31 @@ class OrderController extends Controller
         $cate_data = Cates::where('pid',0)->paginate(7);
 
         // 获取用户 id
-        $uid = 1;
+        $uid = session('home_userinfo')['id'];
+
+        // 获取用户名
+        $user = Users::where('id',$uid)->first();
 
         // 获取用户的 购物车
         $mycar = Mycar::where('uid',$uid)->get();
+        // 获取购物车数量
+        $mycarnum = $mycar->count();
 
         $arr = array(
             'uid' => $uid,
-            'moren' => 0,
+            'moren' => 1,
         );
         // 获取收货地址
         $address = Address::where($arr)->first();
+
+        if(!$address){
+            $ars = Address::where('uid',$uid)->get();
+            if(!$ars){
+                echo "<script>alert('请添加地址');location.href='/home/geren/ress/$uid'</script>";
+            }else{
+                echo "<script>alert('请添加默认地址');location.href='/home/geren/ress/$uid'</script>";
+            }
+        }
         // 将获取到的数据添加入订单
         $order = new Order;
         // 将获取到的数据添加入 订单详情
@@ -90,7 +104,7 @@ class OrderController extends Controller
 
 
         // 订单页 视图
-        return view('home.order.index',['cate_data'=>$cate_data,'order_data'=>$order_data]);
+        return view('home.order.index',['cate_data'=>$cate_data,'order_data'=>$order_data,'user'=>$user,'mycarnum'=>$mycarnum]);
     }
 
     /**
@@ -130,6 +144,7 @@ class OrderController extends Controller
         // 获取用户信息
         $order = Order::where('id',$id)->first();
 
+
         $discuss = new Discuss;
 
         // 压入数据
@@ -163,8 +178,19 @@ class OrderController extends Controller
         // 列表页 
         $cate_data = Cates::where('pid',0)->paginate(7);
 
+        // 获取用户 id
+        $uid = session('home_userinfo')['id'];
+
+        // 获取用户的 购物车
+        $mycar = Mycar::where('uid',$uid)->get();
+        // 获取购物车数量
+        $mycarnum = $mycar->count();
+
+        // 获取用户名
+        $user = Users::where('id',$uid)->first();
+
         // 视图 跳转 评论商品页
-        return view('home.order.discuss',['cate_data'=>$cate_data,'goods'=>$goods,'order'=>$order]);
+        return view('home.order.discuss',['cate_data'=>$cate_data,'goods'=>$goods,'user'=>$user,'order'=>$order,'mycarnum'=>$mycarnum]);
     }
 
     // 订单详情页
@@ -181,10 +207,21 @@ class OrderController extends Controller
         // 获取用户信息
         $uname = Users::where('id',$detail->uid)->first(['uname']);
 
+        // 获取用户 id
+        $uid = session('home_userinfo')['id'];
+
+        // 获取用户的 购物车
+        $mycar = Mycar::where('uid',$uid)->get();
+        // 获取购物车数量
+        $mycarnum = $mycar->count();
+
+        // 获取用户名
+        $user = Users::where('id',$uid)->first();
+
         // 获取商品信息
         $goods = Goods::where('id',$detail->money)->first();
 
-        return view('home.order.detail',['cate_data'=>$cate_data,'detail'=>$detail,'uname'=>$uname,'goods'=>$goods,'order'=>$order]);
+        return view('home.order.detail',['cate_data'=>$cate_data,'user'=>$user,'detail'=>$detail,'uname'=>$uname,'goods'=>$goods,'order'=>$order,'mycarnum'=>$mycarnum]);
         
         
     }

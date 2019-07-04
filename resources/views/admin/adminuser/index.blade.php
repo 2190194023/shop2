@@ -1,6 +1,5 @@
 @extends('admin.public.index')
 
-
 @section('content')
 	<div class="mws-panel grid_8">
     	<div class="mws-panel-header">
@@ -11,15 +10,13 @@
             	<div class="dataTables_filter" id="DataTables_Table_1_filter">
             		<form action="/admin/adminuser" method="get">
 	            		<label>
-	            			用户名 : 
-	            			<input type="text" name="search_uname" value="{{ $params['search_uname'] or '' }}">
+	            			<input type="text" name="search_uname" placeholder="用户名" value="{{ $params['search_uname'] or '' }}">
 	            		</label>
 	            		<label>
-	            			邮箱 : 
-	            			<input type="text" name="search_email" value="{{ $params['search_email'] or '' }}">
+	            			<input type="text" name="search_email" placeholder="邮箱" value="{{ $params['search_email'] or '' }}">
 	            		</label>
 	            		<label>
-							<input type="submit"  class="btn btn-info">
+							<input type="submit" value="搜索" class="btn btn-success">
 	            		</label>
             		</form>
             	</div>
@@ -53,7 +50,7 @@
 								<form action="/admin/adminuser/{{ $v->id }}" method="post" style="display: inline-block;">
 									{{ csrf_field() }}
 									{{ method_field('DELETE') }}
-									<input type="submit" value="删除" class="btn btn-success">
+									<input type="submit" value="删除" class="btn btn-danger">
 								</form>
 		                    </td>
 		                </tr>
@@ -99,7 +96,6 @@
 			        }
 
 				</style>
-
         	</div>
         </div>
     </div>

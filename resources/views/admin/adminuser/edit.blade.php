@@ -60,7 +60,6 @@
 					    <label class="mws-form-label" >
 					       头像
 					    </label>
-
 					</div>    
 
 					<div class="mws-form-row">
@@ -80,10 +79,9 @@
         				</div>   
 
 					</div>         
-
 	            </div>
 	            <div class="mws-button-row">
-	                <input type="submit" value="提交" class="btn btn-info">               
+	                <input type="submit" value="修改" class="btn btn-info">               
 	            </div>
 	        </form>
 	    </div>   	

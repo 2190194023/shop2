@@ -45,11 +45,11 @@
                                     <td><img src="/uploads/{{ $v->lujing }}" style="width:50px;"></td>
                                     <td>
                                     	
-                                    	<a href="/admin/goodsimg/{{ $v->id }}/edit" class="btn btn-primary">修改</a>
+                                    	<a href="/admin/goodsimg/{{ $v->id }}/edit" class="btn btn-info">修改</a>
                                     	<form action="/admin/goodsimg/{{ $v->id }}" method="post" style="display:inline-block;">
                                     		{{ csrf_field() }}
                                     		{{ method_field('DELETE') }}
-                                    		<input type="submit" value="删除" class="btn btn-success">
+                                    		<input type="submit" value="删除" class="btn btn-danger">
                                     	</form>
                                     </td>
                                 </tr>

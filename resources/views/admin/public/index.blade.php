@@ -133,6 +133,7 @@
                         </ul>
                     </li>
                 </ul>
+
                 <ul>
                     <li class="active">
                         <a href="#">
@@ -143,15 +144,7 @@
                         </ul>
                     </li>
                 </ul>
-                <ul>
-                    <li class="active">
-                        <a href="#"><i class="icon-list"></i> 订单管理</a>
-                        <ul>
-                            <li><a href="/admin/order">订单列表</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                
+
                 <ul>
                     <li class="active">
                         <a href="JavaScript:;"><i class="icon-google-plus"></i>分类管理</a>
@@ -162,16 +155,7 @@
                         </ul>
                     </li>
                 </ul>
-                <ul>
-                    <li class="active">
-                        <a href="JavaScript:;"><i class="icon-list"></i> 友情链接管理</a>
-                        <ul>
-                            <li><a href="/admin/link">友情链接列表</a></li>
-                            <li><a href="/admin/link/create">友情链接添加</a></li>
 
-                        </ul>
-                    </li>
-                </ul>
                 <ul>
                     <li class="active">
 
@@ -182,6 +166,7 @@
                         </ul>
                         </li>
                 </ul>
+                
                 <ul>
                     <li class="active">
                         <a href="JavaScript:;"><i class="icon-list"></i> 商品管理</a>
@@ -200,6 +185,7 @@
                         </ul>
                     </li>
                 </ul>
+
                 <ul>
                     <li class="active">
                         <a href="JavaScript:;"><i class="icon-list"></i>秒杀管理</a>
@@ -215,6 +201,27 @@
                         <ul>
                             <li><a href="/admin/dong">活动列表</a></li>
                             <li><a href="/admin/dong/create">添加活动</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul>
+                    <li class="active">
+                        <a href="#"><i class="icon-list"></i> 订单管理</a>
+                        <ul>
+                            <li><a href="/admin/order">订单列表</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                
+                <ul>
+                    <li class="active">
+                        <a href="JavaScript:;"><i class="icon-list"></i> 友情链接管理</a>
+                        <ul>
+                            <li><a href="/admin/link">友情链接列表</a></li>
+                            <li><a href="/admin/link/create">友情链接添加</a></li>
+
                         </ul>
                     </li>
                 </ul>

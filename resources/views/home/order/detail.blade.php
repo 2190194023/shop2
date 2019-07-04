@@ -4,7 +4,17 @@
 <header id="pc-header">
 	<div class="pc-header-nav">
 		<div class="pc-header-con">
-			<div class="fl pc-header-link" >您好！，欢迎来云购物 <a href="login.html" target="_blank">请登录</a> <a href="register.html" target="_blank"> 免费注册</a></div>
+			@if(!session('home_login'))
+			<div class="fl pc-header-link" >您好！，欢迎来云购物 
+				<a href="/home/login">请登录</a> 
+				<a href="/home/register">免费注册</a>
+			</div>
+			@else
+				<div class="fl pc-header-link" >您好！，欢迎&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">{{ $user->uname }}</span>
+				<a href="/home/logout">退出</a> 
+	
+			</div>
+			@endif
 			<div class="fr pc-header-list top-nav">
 				<ul>
 					<li>
@@ -31,7 +41,11 @@
 					</li>
 					<li><a href="#">我的云购</a></li>
 					<li><a href="#">我的收藏</a></li>
-					<li><a href="#">会员中心</a></li>
+					@if(!empty(session('home_userinfo')))
+						<li><a href="/home/geren/index">个人中心</a></li>
+					@else
+						<li><a href="/home/login">个人中心</a></li>
+					@endif
 					<li><a href="#">客户服务</a></li>
 					<li><a href="#">帮助中心</a></li>
 				</ul>
@@ -64,8 +78,8 @@
 		</div>
 		<div class="fr pc-head-car">
 			<i class="icon-car"></i>
-			<a href="#">我的购物车</a>
-			<em>10</em>
+			<a href="/home/mycar" target="_blank">我的购物车</a>
+			<em>{{ $mycarnum }}</em>
 		</div>
 	</div>
 	<!--  顶部    start-->
@@ -88,32 +102,20 @@
 	<div class="member-center clearfix">
 		<div class="member-left fl">
 			<div class="member-apart clearfix">
-				<div class="fl"><a href="#"><img src="img/mem.png"></a></div>
+				<div class="fl"><a href="#"><img src="/uploads/{{ $user->profile }}"></a></div>
 				<div class="fl">
 					<p>用户名：</p>
-					<p><a href="#">亚里士多德</a></p>
+					<p><a href="#">{{ $user->uname }}</a></p>
 					<p>搜悦号：</p>
-					<p>389323080</p>
+					<p>{{ $user->id }}</p>
 				</div>
 			</div>
 			<div class="member-lists">
 				<dl>
 					<dt>我的商城</dt>
-					<dd class="cur"><a href="#">我的订单</a></dd>
-					<dd><a href="#">我的收藏</a></dd>
-					<dd><a href="#">账户安全</a></dd>
-					<dd><a href="#">我的评价</a></dd>
-					<dd><a href="#">地址管理</a></dd>
-				</dl>
-				<dl>
-					<dt>客户服务</dt>
-					<dd><a href="#">退货申请</a></dd>
-					<dd><a href="#">退货/退款记录</a></dd>
-				</dl>
-				<dl>
-					<dt>我的消息</dt>
-					<dd><a href="#">商城快讯</a></dd>
-					<dd><a href="#">帮助中心</a></dd>
+					<dd class="cur"><a href="/home/geren/pass/{{ $user->id }}">账户安全</a></dd>
+					<dd class="cur"><a href="/home/order/">我的订单</a></dd>
+					<dd class="cur"><a href="/home/geren/ress/{{ $user->id }}">地址管理</a></dd>
 				</dl>
 			</div>
 		</div>

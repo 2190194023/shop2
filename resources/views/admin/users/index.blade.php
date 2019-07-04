@@ -10,15 +10,13 @@
             	<div class="dataTables_filter" id="DataTables_Table_1_filter">
             		<form action="/admin/users" method="get">
 	            		<label>
-	            			用户名 : 
-	            			<input type="text" name="search_uname" value="{{ $params['search_uname'] or '' }}">
+	            			<input type="text" name="search_uname" placeholder="用户名" value="{{ $params['search_uname'] or '' }}">
 	            		</label>
 	            		<label>
-	            			邮箱 : 
-	            			<input type="text" name="search_email" value="{{ $params['search_email'] or '' }}">
+	            			<input type="text" name="search_email" placeholder="邮箱" value="{{ $params['search_email'] or '' }}">
 	            		</label>
 	            		<label>
-							<input type="submit"  class="btn btn-info">
+							<input type="submit"  class="btn btn-success">
 	            		</label>
             		</form>
             	</div>
@@ -49,11 +47,7 @@
 		                    <td style="text-align: center;">{{ $v->created_at }}</td>
 		                    <td style="text-align: center;">
 								<a href="/admin/users/{{ $v->id }}/edit" class="btn btn-info">修改</a>
-								<form action="/admin/users/{{ $v->id }}" method="post" style="display: inline-block;">
-									{{ csrf_field() }}
-									{{ method_field('DELETE') }}
-									<input type="submit" value="删除" class="btn btn-success">
-								</form>
+								<a title="删除" class="btn btn-danger" token="{{ csrf_token() }}" onclick="member_del(this,'{{ $v->id }}')" href="javascript:;">删除</a>
 		                    </td>
 		                </tr>
 		               @endforeach
@@ -63,10 +57,31 @@
 
 	            
 
-	            	<div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
-               			{{ $users->appends($params)->links() }}
-                
-            		</div>
+            	<div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
+           			{{ $users->appends($params)->links() }}
+            
+        		</div>
+        		<script type="text/javascript">
+					/*删除*/
+				    function member_del(obj,id){
+				      	let token = $(obj).attr('token');
+				      	$.ajaxSetup({headers: {'X-CSRF-TOKEN': token}});
+						if(!window.confirm('你确定要删除吗?')){
+							return false;
+						}
+				      	// 发送ajax删除
+				      	$.post('/admin/users/del',{id:id,_method:"DELETE"},function(res){
+				      	if(res == 'ok'){
+							// 删除tr节点
+				            alert('删除成功');
+							window.location.href = window.location.href;
+						}else{
+							alert('删除失败')
+						}
+				    },'html')
+				              
+				};
+        		</script>
 
             	<style>
 			        .pagination{

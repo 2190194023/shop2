@@ -5,7 +5,17 @@
 <header id="pc-header">
        <div class="pc-header-nav">
         <div class="pc-header-con">
-            <div class="fl pc-header-link" >您好！，欢迎来云购物 <a href="" target="_blank">请登录</a> <a href="register.html" target="_blank"> 免费注册</a></div>
+            @if(!session('home_login'))
+            <div class="fl pc-header-link" >您好！，欢迎来云购物 
+                <a href="/home/login">请登录</a> 
+                <a href="/home/register">免费注册</a>
+            </div>
+            @else
+                <div class="fl pc-header-link" >您好！，欢迎&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">{{ $user->uname }}</span>
+                <a href="/home/logout">退出</a> 
+    
+            </div>
+            @endif
             <div class="fr pc-header-list top-nav">
                 <ul>
                     <li>
@@ -32,7 +42,11 @@
                     </li>
                     <li><a href="#">我的云购</a></li>
                     <li><a href="#">我的收藏</a></li>
-                    <li><a href="#">会员中心</a></li>
+                    @if(!empty(session('home_userinfo')))
+                        <li><a href="/home/geren/index">个人中心</a></li>
+                    @else
+                        <li><a href="/home/login">个人中心</a></li>
+                    @endif
                     <li><a href="#">客户服务</a></li>
                     <li><a href="#">帮助中心</a></li>
                 </ul>
@@ -65,8 +79,8 @@
         </div>
         <div class="fr pc-head-car">
             <i class="icon-car"></i>
-            <a href="#">我的购物车</a>
-            <em>10</em>
+            <a href="/home/mycar" target="_blank">我的购物车</a>
+            <em>{{ $mycarnum }}</em>
         </div>
     </div>
     <!--  顶部    start-->

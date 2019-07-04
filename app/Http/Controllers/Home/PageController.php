@@ -8,6 +8,8 @@ use App\Models\Cates;
 use App\Models\Goods;
 use App\Models\Goodsimg;
 use App\Models\Discuss;
+use App\Models\Users;
+use App\Models\Mycar;
 use DB;
 
 class PageController extends Controller
@@ -58,6 +60,16 @@ class PageController extends Controller
         $goods = Goods::find($id);
         $gimg = Goodsimg::where('gid',$id)->paginate(7);
 
+        // 获取用户 id
+        $uid = session('home_userinfo')['id'];
+        // 获取用户的 购物车
+        $mycar = Mycar::where('uid',$uid)->get();
+        // 获取购物车数量
+        $mycarnum = $mycar->count();
+
+        // 获取用户名
+        $user = Users::where('id',$uid)->first();
+
         // 猜你喜欢  本类别下 最新商品
         $goods_data = Goods::where('tid',$goods->tid)->get();
 
@@ -67,7 +79,7 @@ class PageController extends Controller
         // 商品评价 数量
         $num = $discuss_data->count();
         // 商品详情首页 视图
-        return view('home.page.index',['cate_data'=>$cate_data,'num'=>$num,'discuss_data'=>$discuss_data,'goods'=>$goods,'gimg'=>$gimg,'goods_data'=>$goods_data]);
+        return view('home.page.index',['cate_data'=>$cate_data,'num'=>$num,'user'=>$user,'discuss_data'=>$discuss_data,'goods'=>$goods,'gimg'=>$gimg,'goods_data'=>$goods_data,'mycarnum'=>$mycarnum]);
     }
 
     /**

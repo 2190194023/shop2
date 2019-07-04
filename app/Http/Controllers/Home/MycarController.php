@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Mycar;
 use App\Models\Cates;
 use App\Models\Goods;
+use App\Models\Users;
 
 class MycarController extends Controller
 {
@@ -22,17 +23,22 @@ class MycarController extends Controller
         $cate_data = Cates::where('pid',0)->paginate(7);
 
         // 获取用户 id
-        $uid = 1;
+        $uid = session('home_userinfo')['id'];
+
+        // 获取用户名
+        $user = Users::where('id',$uid)->first();
 
         // 获取用户的 购物车 
         $mycar = Mycar::where('uid',$uid)->get();
+        // 获取购物车数量
+        $mycarnum = $mycar->count();
         
         // 获取全部商品 数量
         $goods = Goods::get();
         $num = $goods->count();
 
         // 视图
-        return view('home.mycar.index',['cate_data'=>$cate_data,'mycar'=>$mycar,'num'=>$num]);
+        return view('home.mycar.index',['cate_data'=>$cate_data,'mycar'=>$mycar,'num'=>$num,'user'=>$user,'mycarnum'=>$mycarnum]);
     }
 
     /**
@@ -66,12 +72,13 @@ class MycarController extends Controller
     // 执行加入购物车
     public function show(Request $request,$id,$num)
     {
-        // // 判断 是否登录 
-        if(empty($_SESSION['home'])){
+
+        // 判断 是否登录 
+        if(!session('home_userinfo')){
              return redirect('home/login')->with('error','请先登录');
         }else{
             // 获取 商品id 用户id 加入购物车表
-            $uid = $_COOKIE['id'];
+            $uid = session('home_userinfo')['id'];;
             $gid = $id;
 
             $mycar = new Mycar;

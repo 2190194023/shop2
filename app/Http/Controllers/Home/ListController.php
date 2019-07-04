@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cates;
 use App\Models\Goods;
+use App\Models\Users;
+use App\Models\Mycar;
 use DB;
 
 class ListController extends Controller
@@ -20,10 +22,21 @@ class ListController extends Controller
         // 所有品牌页 
         $cate_data = Cates::where('pid',0)->paginate(7);
 
+        // 获取用户 id
+        $uid = session('home_userinfo')['id'];
+
+        // 获取用户的 购物车
+        $mycar = Mycar::where('uid',$uid)->get();
+        // 获取购物车数量
+        $mycarnum = $mycar->count();
+
+        // 获取用户名
+        $user = Users::where('id',$uid)->first();
+
         // 获取 所有栏目名称 50条 一页
         $cate_res = Cates::paginate(50);
         // 视图
-        return view('home.list.allcates',['cate_data'=>$cate_data,'cate_res'=>$cate_res]);
+        return view('home.list.allcates',['cate_data'=>$cate_data,'cate_res'=>$cate_res,'user'=>$user,'mycarnum'=>$mycarnum]);
     }
 
     /**
@@ -60,6 +73,16 @@ class ListController extends Controller
         $cname = Cates::where('id',$id)->first(['cname']);
         // 列表页 
         $cate_data = Cates::where('pid',0)->paginate(7);
+        // 获取用户 id
+        $uid = session('home_userinfo')['id'];
+
+        // 获取用户的 购物车
+        $mycar = Mycar::where('uid',$uid)->get();
+        // 获取购物车数量
+        $mycarnum = $mycar->count();
+
+        // 获取用户名
+        $user = Users::where('id',$uid)->first();
 
         // 获取 所有 栏目名称 15条
         $cate_res = Cates::paginate(15);
@@ -77,7 +100,7 @@ class ListController extends Controller
         
 
         // 视图
-        return view('home.list.index',['cate_data'=>$cate_data,'goods_data'=>$goods_data,'cname'=>$cname,'cate_res'=>$cate_res]);
+        return view('home.list.index',['cate_data'=>$cate_data,'goods_data'=>$goods_data,'cname'=>$cname,'user'=>$user,'cate_res'=>$cate_res,'mycarnum'=>$mycarnum]);
     }
 
     /**
