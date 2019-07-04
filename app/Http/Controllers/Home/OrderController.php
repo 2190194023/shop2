@@ -103,7 +103,7 @@ class OrderController extends Controller
         $link = Link::where('status',1)->get();
 
         // 查询订单
-        $order_data = Order::where('uid',$uid)->paginate(20);
+        $order_data = Order::where('uid',$uid)->orderby('oaddtime','desc')->paginate(20);
 
 
         // 订单页 视图

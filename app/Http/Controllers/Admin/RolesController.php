@@ -27,6 +27,7 @@ class RolesController extends Controller
             'HuodongController'=>'商品活动管理',
             'OrderController'=>'商品订单管理',
             'LinkController'=>'友情链接管理',
+            'GuangController'=>'广告管理',
         ];
     }
     /**

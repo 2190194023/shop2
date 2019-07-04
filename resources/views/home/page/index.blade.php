@@ -202,7 +202,15 @@
 
 			</div>
 			<div class="Xcontent34"><a href="#">立即购买</a></div>
-			<div class="Xcontent35"><a id="ak" href="/home/mycar/{{ $goods['id'] }}">加入购物车</a></div>
+			<div class="Xcontent35">
+				@if($goods['gstatus'] == 1)
+					<a id="ak" href="/home/mycar/{{ $goods['id'] }}">加入购物车</a>
+				@elseif($goods['gstatus'] == 2)
+					<a id="ak" href="/home/mycar/{{ $goods['id'] }}">加入购物车</a>
+				@else
+					<a href="javascript:;">加入购物车</a>
+				@endif
+			</div>
 
 		</ol>
 
